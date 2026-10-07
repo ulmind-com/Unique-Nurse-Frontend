@@ -9,112 +9,37 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as VideosRouteImport } from './routes/videos'
-import { Route as TestimonialsRouteImport } from './routes/testimonials'
-import { Route as TermsRouteImport } from './routes/terms'
-import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
-import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as PatientCareRouteImport } from './routes/patient-care'
-import { Route as HousekeepingRouteImport } from './routes/housekeeping'
-import { Route as HouseMaidRouteImport } from './routes/house-maid'
-import { Route as HospitalEscortRouteImport } from './routes/hospital-escort'
-import { Route as HomeNursingRouteImport } from './routes/home-nursing'
-import { Route as FaqRouteImport } from './routes/faq'
-import { Route as ElderCareRouteImport } from './routes/elder-care'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as BookingRouteImport } from './routes/booking'
-import { Route as BabyCareRouteImport } from './routes/baby-care'
-import { Route as AyaServicesRouteImport } from './routes/aya-services'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ServicesIndexRouteImport } from './routes/services.index'
-import { Route as CareersIndexRouteImport } from './routes/careers.index'
-import { Route as BlogsIndexRouteImport } from './routes/blogs.index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AyaServicesRouteImport } from './routes/aya-services'
+import { Route as BabyCareRouteImport } from './routes/baby-care'
+import { Route as BookingRouteImport } from './routes/booking'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ElderCareRouteImport } from './routes/elder-care'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as HomeNursingRouteImport } from './routes/home-nursing'
+import { Route as HospitalEscortRouteImport } from './routes/hospital-escort'
+import { Route as HouseMaidRouteImport } from './routes/house-maid'
+import { Route as HousekeepingRouteImport } from './routes/housekeeping'
+import { Route as PatientCareRouteImport } from './routes/patient-care'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as TestimonialsRouteImport } from './routes/testimonials'
+import { Route as VideosRouteImport } from './routes/videos'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
-import { Route as CareersSlugRouteImport } from './routes/careers.$slug'
-import { Route as BlogsSlugRouteImport } from './routes/blogs.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as BlogsIndexRouteImport } from './routes/blogs.index'
+import { Route as BlogsSlugRouteImport } from './routes/blogs.$slug'
+import { Route as CareersIndexRouteImport } from './routes/careers.index'
+import { Route as CareersSlugRouteImport } from './routes/careers.$slug'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ApiPublicProxySplatRouteImport } from './routes/api/public/proxy.$'
 
-const VideosRoute = VideosRouteImport.update({
-  id: '/videos',
-  path: '/videos',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TestimonialsRoute = TestimonialsRouteImport.update({
-  id: '/testimonials',
-  path: '/testimonials',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RefundPolicyRoute = RefundPolicyRouteImport.update({
-  id: '/refund-policy',
-  path: '/refund-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PatientCareRoute = PatientCareRouteImport.update({
-  id: '/patient-care',
-  path: '/patient-care',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HousekeepingRoute = HousekeepingRouteImport.update({
-  id: '/housekeeping',
-  path: '/housekeeping',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HouseMaidRoute = HouseMaidRouteImport.update({
-  id: '/house-maid',
-  path: '/house-maid',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HospitalEscortRoute = HospitalEscortRouteImport.update({
-  id: '/hospital-escort',
-  path: '/hospital-escort',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HomeNursingRoute = HomeNursingRouteImport.update({
-  id: '/home-nursing',
-  path: '/home-nursing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FaqRoute = FaqRouteImport.update({
-  id: '/faq',
-  path: '/faq',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ElderCareRoute = ElderCareRouteImport.update({
-  id: '/elder-care',
-  path: '/elder-care',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BookingRoute = BookingRouteImport.update({
-  id: '/booking',
-  path: '/booking',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BabyCareRoute = BabyCareRouteImport.update({
-  id: '/baby-care',
-  path: '/baby-care',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AyaServicesRoute = AyaServicesRouteImport.update({
-  id: '/aya-services',
-  path: '/aya-services',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -122,24 +47,84 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AyaServicesRoute = AyaServicesRouteImport.update({
+  id: '/aya-services',
+  path: '/aya-services',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesIndexRoute = ServicesIndexRouteImport.update({
-  id: '/services/',
-  path: '/services/',
+const BabyCareRoute = BabyCareRouteImport.update({
+  id: '/baby-care',
+  path: '/baby-care',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CareersIndexRoute = CareersIndexRouteImport.update({
-  id: '/careers/',
-  path: '/careers/',
+const BookingRoute = BookingRouteImport.update({
+  id: '/booking',
+  path: '/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogsIndexRoute = BlogsIndexRouteImport.update({
-  id: '/blogs/',
-  path: '/blogs/',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElderCareRoute = ElderCareRouteImport.update({
+  id: '/elder-care',
+  path: '/elder-care',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeNursingRoute = HomeNursingRouteImport.update({
+  id: '/home-nursing',
+  path: '/home-nursing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HospitalEscortRoute = HospitalEscortRouteImport.update({
+  id: '/hospital-escort',
+  path: '/hospital-escort',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HouseMaidRoute = HouseMaidRouteImport.update({
+  id: '/house-maid',
+  path: '/house-maid',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousekeepingRoute = HousekeepingRouteImport.update({
+  id: '/housekeeping',
+  path: '/housekeeping',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PatientCareRoute = PatientCareRouteImport.update({
+  id: '/patient-care',
+  path: '/patient-care',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestimonialsRoute = TestimonialsRouteImport.update({
+  id: '/testimonials',
+  path: '/testimonials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VideosRoute = VideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -147,14 +132,14 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesSlugRoute = ServicesSlugRouteImport.update({
-  id: '/services/$slug',
-  path: '/services/$slug',
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CareersSlugRoute = CareersSlugRouteImport.update({
-  id: '/careers/$slug',
-  path: '/careers/$slug',
+const BlogsIndexRoute = BlogsIndexRouteImport.update({
+  id: '/blogs/',
+  path: '/blogs/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogsSlugRoute = BlogsSlugRouteImport.update({
@@ -162,9 +147,24 @@ const BlogsSlugRoute = BlogsSlugRouteImport.update({
   path: '/blogs/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
+const CareersIndexRoute = CareersIndexRouteImport.update({
+  id: '/careers/',
+  path: '/careers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersSlugRoute = CareersSlugRouteImport.update({
+  id: '/careers/$slug',
+  path: '/careers/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/services/$slug',
+  path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicProxySplatRoute = ApiPublicProxySplatRouteImport.update({
@@ -383,116 +383,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/videos': {
-      id: '/videos'
-      path: '/videos'
-      fullPath: '/videos'
-      preLoaderRoute: typeof VideosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/testimonials': {
-      id: '/testimonials'
-      path: '/testimonials'
-      fullPath: '/testimonials'
-      preLoaderRoute: typeof TestimonialsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/refund-policy': {
-      id: '/refund-policy'
-      path: '/refund-policy'
-      fullPath: '/refund-policy'
-      preLoaderRoute: typeof RefundPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/patient-care': {
-      id: '/patient-care'
-      path: '/patient-care'
-      fullPath: '/patient-care'
-      preLoaderRoute: typeof PatientCareRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/housekeeping': {
-      id: '/housekeeping'
-      path: '/housekeeping'
-      fullPath: '/housekeeping'
-      preLoaderRoute: typeof HousekeepingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/house-maid': {
-      id: '/house-maid'
-      path: '/house-maid'
-      fullPath: '/house-maid'
-      preLoaderRoute: typeof HouseMaidRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/hospital-escort': {
-      id: '/hospital-escort'
-      path: '/hospital-escort'
-      fullPath: '/hospital-escort'
-      preLoaderRoute: typeof HospitalEscortRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/home-nursing': {
-      id: '/home-nursing'
-      path: '/home-nursing'
-      fullPath: '/home-nursing'
-      preLoaderRoute: typeof HomeNursingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/faq': {
-      id: '/faq'
-      path: '/faq'
-      fullPath: '/faq'
-      preLoaderRoute: typeof FaqRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/elder-care': {
-      id: '/elder-care'
-      path: '/elder-care'
-      fullPath: '/elder-care'
-      preLoaderRoute: typeof ElderCareRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/booking': {
-      id: '/booking'
-      path: '/booking'
-      fullPath: '/booking'
-      preLoaderRoute: typeof BookingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/baby-care': {
-      id: '/baby-care'
-      path: '/baby-care'
-      fullPath: '/baby-care'
-      preLoaderRoute: typeof BabyCareRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/aya-services': {
-      id: '/aya-services'
-      path: '/aya-services'
-      fullPath: '/aya-services'
-      preLoaderRoute: typeof AyaServicesRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -502,32 +397,116 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/aya-services': {
+      id: '/aya-services'
+      path: '/aya-services'
+      fullPath: '/aya-services'
+      preLoaderRoute: typeof AyaServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/': {
-      id: '/services/'
-      path: '/services'
-      fullPath: '/services/'
-      preLoaderRoute: typeof ServicesIndexRouteImport
+    '/baby-care': {
+      id: '/baby-care'
+      path: '/baby-care'
+      fullPath: '/baby-care'
+      preLoaderRoute: typeof BabyCareRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/careers/': {
-      id: '/careers/'
-      path: '/careers'
-      fullPath: '/careers/'
-      preLoaderRoute: typeof CareersIndexRouteImport
+    '/booking': {
+      id: '/booking'
+      path: '/booking'
+      fullPath: '/booking'
+      preLoaderRoute: typeof BookingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blogs/': {
-      id: '/blogs/'
-      path: '/blogs'
-      fullPath: '/blogs/'
-      preLoaderRoute: typeof BlogsIndexRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/elder-care': {
+      id: '/elder-care'
+      path: '/elder-care'
+      fullPath: '/elder-care'
+      preLoaderRoute: typeof ElderCareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home-nursing': {
+      id: '/home-nursing'
+      path: '/home-nursing'
+      fullPath: '/home-nursing'
+      preLoaderRoute: typeof HomeNursingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hospital-escort': {
+      id: '/hospital-escort'
+      path: '/hospital-escort'
+      fullPath: '/hospital-escort'
+      preLoaderRoute: typeof HospitalEscortRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/house-maid': {
+      id: '/house-maid'
+      path: '/house-maid'
+      fullPath: '/house-maid'
+      preLoaderRoute: typeof HouseMaidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housekeeping': {
+      id: '/housekeeping'
+      path: '/housekeeping'
+      fullPath: '/housekeeping'
+      preLoaderRoute: typeof HousekeepingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/patient-care': {
+      id: '/patient-care'
+      path: '/patient-care'
+      fullPath: '/patient-care'
+      preLoaderRoute: typeof PatientCareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/testimonials': {
+      id: '/testimonials'
+      path: '/testimonials'
+      fullPath: '/testimonials'
+      preLoaderRoute: typeof TestimonialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/videos': {
+      id: '/videos'
+      path: '/videos'
+      fullPath: '/videos'
+      preLoaderRoute: typeof VideosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -537,18 +516,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/$slug': {
-      id: '/services/$slug'
-      path: '/services/$slug'
-      fullPath: '/services/$slug'
-      preLoaderRoute: typeof ServicesSlugRouteImport
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/careers/$slug': {
-      id: '/careers/$slug'
-      path: '/careers/$slug'
-      fullPath: '/careers/$slug'
-      preLoaderRoute: typeof CareersSlugRouteImport
+    '/blogs/': {
+      id: '/blogs/'
+      path: '/blogs'
+      fullPath: '/blogs/'
+      preLoaderRoute: typeof BlogsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blogs/$slug': {
@@ -558,11 +537,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
+    '/careers/': {
+      id: '/careers/'
+      path: '/careers'
+      fullPath: '/careers/'
+      preLoaderRoute: typeof CareersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers/$slug': {
+      id: '/careers/$slug'
+      path: '/careers/$slug'
+      fullPath: '/careers/$slug'
+      preLoaderRoute: typeof CareersSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/proxy/$': {

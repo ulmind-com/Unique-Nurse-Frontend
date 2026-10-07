@@ -41,7 +41,10 @@ export function BlogCard({ blog }: { blog: Blog }) {
           {date && (
             <span>
               ·{" "}
-              {new Date(date).toLocaleDateString(undefined, {
+              {/* Pin the locale: `undefined` resolves to the server's locale
+                  during SSR and the visitor's in the browser, which produced a
+                  hydration mismatch on every blog card. */}
+              {new Date(date).toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",

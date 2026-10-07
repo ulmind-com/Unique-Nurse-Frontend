@@ -75,7 +75,7 @@ function BlogDetail() {
               {date && (
                 <span>
                   ·{" "}
-                  {new Date(date).toLocaleDateString(undefined, {
+                  {new Date(date).toLocaleDateString("en-GB", {
                     day: "numeric",
                     month: "long",
                     year: "numeric",
