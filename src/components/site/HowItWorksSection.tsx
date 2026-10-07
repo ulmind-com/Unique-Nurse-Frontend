@@ -188,7 +188,7 @@ export function HowItWorksSection({ illustration }: { illustration?: string }) {
               >
                 <img
                   src={image}
-                  alt="How Nupun home care works"
+                  alt="How Unique Nurse and Aya Services home care works"
                   className="h-full w-full object-cover"
                   loading="lazy"
                   decoding="async"

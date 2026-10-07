@@ -9,12 +9,12 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/careers/")({
   head: () => ({
     meta: [
-      { title: "Careers — Join Nupun Home Health Care" },
+      { title: "Careers — Join Unique Nurse and Aya Services" },
       {
         name: "description",
-        content: "Join Nupun Home Health Care Services and build your career in professional home healthcare.",
+        content: "Join Unique Nurse and Aya Services and build your career in professional home healthcare.",
       },
-      { property: "og:title", content: "Careers — Nupun Home Health Care" },
+      { property: "og:title", content: "Careers — Unique Nurse and Aya Services" },
       { property: "og:url", content: "/careers" },
     ],
     links: [{ rel: "canonical", href: "/careers" }],
@@ -89,13 +89,13 @@ function CareersPage() {
             Join Our Care Team
           </h1>
           <p className="text-lg md:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto font-medium drop-shadow-sm">
-            Join Nupun Home Health Care Services and build your career in professional home healthcare.
+            Join Unique Nurse and Aya Services and build your career in professional home healthcare.
           </p>
         </div>
       </section>
 
       {/* Form Section */}
-      <section className="pb-16 md:pb-24 bg-[#FAFAFA]">
+      <section className="pb-16 md:pb-24 bg-muted">
         <div className="container-x max-w-4xl relative z-20 -mt-24 sm:-mt-32">
           {isSuccess ? (
             <div className="bg-white rounded-3xl p-12 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-black/5">
@@ -104,7 +104,7 @@ function CareersPage() {
               </div>
               <h2 className="text-3xl font-display font-semibold mb-4">Application Submitted!</h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Thank you for applying to Nupun Home Health Care. Our team will review your details and get back to you shortly.
+                Thank you for applying to Unique Nurse and Aya Services. Our team will review your details and get back to you shortly.
               </p>
               <button 
                 onClick={() => window.location.reload()}
@@ -141,14 +141,14 @@ function CareersPage() {
                     <select name="job_title" value={formData.job_title} onChange={handleChange} className="w-full h-12 px-4 rounded-xl border border-input bg-transparent focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none">
                       <option value="Staff Nurse">Staff Nurse</option>
                       <option value="GDA / Patient Attendant">GDA / Patient Attendant</option>
-                      <option value="Physiotherapist">Physiotherapist</option>
+                      <option value="Aya">Aya</option>
                       <option value="Caregiver">Caregiver</option>
                       <option value="Other">Other</option>
                     </select>
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-foreground">Preferred Location</label>
-                    <input name="preferred_location" value={formData.preferred_location} onChange={handleChange} className="w-full h-12 px-4 rounded-xl border border-input bg-transparent focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g. Gurgaon, Delhi" />
+                    <input name="preferred_location" value={formData.preferred_location} onChange={handleChange} className="w-full h-12 px-4 rounded-xl border border-input bg-transparent focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g. Garia, Jadavpur, Salt Lake" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-foreground">Qualification</label>
@@ -208,7 +208,7 @@ function CareersPage() {
                 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="md:col-span-2 space-y-2">
-                    <label className="text-sm font-semibold text-foreground">Nursing/Physiotherapy qualification</label>
+                    <label className="text-sm font-semibold text-foreground">Nursing / care qualification</label>
                     <input name="qualification" value={formData.qualification} onChange={handleChange} className="w-full h-12 px-4 rounded-xl border border-input bg-transparent focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g. B.Sc Nursing, GNM, BPT" />
                   </div>
                   <div className="space-y-2">
@@ -269,7 +269,7 @@ function CareersPage() {
                   <button
                     type="submit"
                     disabled={isPending}
-                    className="w-full md:w-auto md:min-w-[300px] h-14 rounded-full bg-[#185e58] text-white font-semibold flex items-center justify-center gap-2 transition-all hover:opacity-90 disabled:opacity-70 shadow-sm"
+                    className="w-full md:w-auto md:min-w-[300px] h-14 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold flex items-center justify-center gap-2 transition-all hover:opacity-90 disabled:opacity-70 shadow-sm"
                   >
                     {isPending ? (
                       <>

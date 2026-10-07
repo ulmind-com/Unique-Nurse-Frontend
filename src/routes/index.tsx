@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ArrowRight } from "lucide-react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE } from "@/config/site";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
@@ -26,17 +27,15 @@ import { OurStaffSection } from "@/components/site/OurStaffSection";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Nupun Home Health Care — Hospital-grade care, at home" },
+      { title: `${SITE.name} — Nursing, Aya & Patient Care in Kolkata` },
       {
         name: "description",
-        content:
-          "Verified nurses, physiotherapists and premium medical equipment — orchestrated by a dedicated advisor and delivered to your door in hours.",
+        content: SITE.description,
       },
-      { property: "og:title", content: "Nupun Home Health Care — Hospital-grade care, at home" },
+      { property: "og:title", content: `${SITE.name} — Nursing, Aya & Patient Care in Kolkata` },
       {
         property: "og:description",
-        content:
-          "Verified nurses, physiotherapists and premium medical equipment — delivered home.",
+        content: SITE.description,
       },
       { property: "og:url", content: "/" },
     ],
@@ -80,12 +79,12 @@ function Home() {
         <BlogVideosSection />
       </PremiumScrollReveal>
 
-      {/* 6. They Say About Nupun (Testimonials) */}
+      {/* 6. They Say About Unique Nurse and Aya Services (Testimonials) */}
       <PremiumScrollReveal>
         <TestimonialsSection />
       </PremiumScrollReveal>
 
-      {/* Why Choose Nupun + Commitment to Excellence */}
+      {/* Why Choose Unique Nurse and Aya Services + Commitment to Excellence */}
       <PremiumScrollReveal>
         <CommitmentSection />
       </PremiumScrollReveal>
@@ -143,15 +142,15 @@ const DEFAULT_TESTIMONIALS: any /* eslint-disable-line @typescript-eslint/no-exp
     role: "Son of Patient, Kolkata",
     rating: 5,
     content:
-      "Nupun Health arranged an ICU-trained nurse within two hours after my father was discharged. The clinical discipline and empathy shown by the staff were exceptional.",
+      "They sent a trained nurse the same evening my father was discharged. She handled his dressing and medicines properly, and the coordinator checked in every day that first week.",
   },
   {
     id: "2",
     name: "Anjali Mukherjee",
-    role: "Post-Surgery Patient",
+    role: "New Mother, Garia",
     rating: 5,
     content:
-      "The physiotherapist assigned to me for knee replacement recovery was thorough and patient. I walked without assistance much faster than my doctor anticipated!",
+      "We took night baby care for the first two months. The didi was experienced with newborns and very clean in her habits — I finally got some sleep.",
   },
   {
     id: "3",
@@ -159,7 +158,7 @@ const DEFAULT_TESTIMONIALS: any /* eslint-disable-line @typescript-eslint/no-exp
     role: "Elder Care Client",
     rating: 5,
     content:
-      "Having a dedicated 24/7 care attendant for my elderly mother brought our family peace of mind. Truly hospital-grade standards at home.",
+      "I live abroad and my mother is alone in Kolkata. Their caregiver visits daily, takes her to the doctor and sends me updates. That peace of mind is worth everything.",
   },
 ];
 
@@ -207,7 +206,7 @@ function TestimonialsSection() {
 
   return (
     <Section className="overflow-hidden pb-4 pt-2 lg:pt-4">
-      <SectionHeader eyebrow="Testimonials & Reviews" title="They Say About Nupun" align="center" />
+      <SectionHeader eyebrow="Testimonials & Reviews" title="They Say About Unique Nurse and Aya Services" align="center" />
       <div className="mt-10 -mx-4 md:-mx-8">
         <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
           <div className="flex pl-4 md:pl-8">
@@ -256,24 +255,24 @@ const DEFAULT_BLOGS: any /* eslint-disable-line @typescript-eslint/no-explicit-a
   },
   {
     id: "2",
-    title: "Understanding In-Home Physiotherapy: Timeline & Milestones",
-    slug: "in-home-physiotherapy-milestones",
-    category_name: "Physiotherapy",
+    title: "Nurse, Attendant or Aya — Which One Does Your Patient Actually Need?",
+    slug: "nurse-attendant-or-aya-which-to-hire",
+    category_name: "Patient Care",
     excerpt:
-      "What to expect during orthopedic or stroke rehabilitation, and why familiarity of home accelerates cognitive and physical recovery.",
-    author_name: "S. Roy, PT",
+      "The three roles cost very different amounts and do very different work. A plain guide to picking the right one without overpaying.",
+    author_name: "Care Team",
     read_time: "5",
     featured_image: "/assets/hero-slide-1.jpeg",
     published_at: "2026-07-22T10:00:00Z",
   },
   {
     id: "3",
-    title: "When Do You Need Skilled ICU Nursing Care at Home?",
-    slug: "skilled-icu-nursing-at-home-guide",
-    category_name: "Skilled Nursing",
+    title: "Hiring a Live-In Maid in Kolkata: What to Agree Before Day One",
+    slug: "hiring-live-in-maid-kolkata-checklist",
+    category_name: "Household Help",
     excerpt:
-      "A step-by-step assessment guide for families evaluating round-the-clock ventilator, tracheostomy, or palliative nursing care.",
-    author_name: "Nurse Lead Team",
+      "Hours, offs, wages, accommodation and tasks — settling these in writing up front is what keeps a placement working long term.",
+    author_name: "Placement Desk",
     read_time: "3",
     featured_image: "/assets/hero-slide-3.jpeg",
     published_at: "2026-07-15T10:00:00Z",
@@ -369,34 +368,34 @@ function BlogVideosSection() {
 const DEFAULT_FAQS: any /* eslint-disable-line @typescript-eslint/no-explicit-any */[] = [
   {
     id: "1",
-    question: "How quickly can Nupun arrange a nurse or caregiver at my home?",
+    question: "How quickly can Unique Nurse and Aya Services arrange a nurse or caregiver at my home?",
     answer:
-      "In most cases, we can verify your medical requirements and assign a qualified nurse or attendant to your doorstep within 2 to 4 hours of your booking consultation.",
+      "For most Kolkata localities we place a nurse, Aya or attendant within a few hours of confirmation. Call us and we will tell you honestly what is available for your area and shift.",
   },
   {
     id: "2",
-    question: "Are all Nupun caregivers and nurses certified and background-checked?",
+    question: "Are all Unique Nurse and Aya Services caregivers and nurses certified and background-checked?",
     answer:
-      "Yes. Every registered nurse, physiotherapist, and care attendant goes through a rigorous 5-step vetting process, including medical credentials verification, criminal background checks, and practical clinical skills testing.",
+      "Yes. We verify Aadhaar, a local address and references for every nurse, Aya, attendant and maid, and we check nursing qualifications and registration before any clinical placement.",
   },
   {
     id: "3",
     question:
       "Can I request a replacement if the assigned caregiver does not suit our family schedule?",
     answer:
-      "Absolutely. Your dedicated care advisor maintains daily coordination and can facilitate a smooth caregiver replacement within 24 hours without any interruption to ongoing care.",
+      "Yes. Tell us what is not working and we arrange a replacement — usually the same day. Comfort with the caregiver matters as much as the skill.",
   },
   {
     id: "4",
-    question: "Do you provide medical equipment along with nursing or therapy services?",
+    question: "What is the difference between a nurse, an attendant and an Aya?",
     answer:
-      "Yes, we provide comprehensive ICU setup rentals, hospital beds, oxygen concentrators, BiPAP/CPAP monitors, and specialized physiotherapy equipment directly installed at your residence.",
+      "A nurse handles clinical work — injections, IV, dressings and monitoring. An attendant or Aya handles everyday bedside care such as feeding, hygiene, mobility and company. Describe the patient when you call and we will tell you the cheaper option that actually works.",
   },
   {
     id: "5",
     question: "How does billing and pricing work for long-term care plans?",
     answer:
-      "We offer complete transparent pricing with weekly or monthly billing packages tailored to your chosen care shifts (8-hr, 12-hr, or 24-hr live-in care). No hidden charges.",
+      "Pricing is agreed up front against the shift you choose — 8, 12 or 24-hour — and billed weekly or monthly. Monthly placements work out cheaper per day. No hidden charges.",
   },
 ];
 
@@ -406,7 +405,7 @@ function FaqSection() {
   const items = rawItems.length ? rawItems : DEFAULT_FAQS;
 
   return (
-    <Section className="bg-[#F8F9FA]">
+    <Section className="bg-muted">
       <div className="grid gap-12 lg:grid-cols-2 items-start">
         {/* Left Side: Illustration */}
         <div className="flex items-center justify-center lg:justify-end pr-0 lg:pr-8">
@@ -491,11 +490,11 @@ function ContactCta() {
               Ready when you are
             </div>
             <h2 className="font-display text-4xl md:text-5xl text-white">
-              {settings?.cta_title || "Talk to a care advisor."}
+              {settings?.cta_title || "Talk to our care coordinator."}
             </h2>
             <p className="mt-4 text-white/80 max-w-md">
               {settings?.cta_description ||
-                "Tell us what you need — we'll match the right nurse or equipment, usually within two hours."}
+                "Tell us about the patient and the shift you need — we will match the right staff, usually the same day."}
             </p>
           </div>
           <div className="flex flex-wrap gap-3 lg:justify-end">

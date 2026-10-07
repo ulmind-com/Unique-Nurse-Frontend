@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle2, ChevronLeft, ChevronRight, Loader2, Sparkles, ShieldCheck, Clock, DollarSign } from "lucide-react";
 import { toast } from "sonner";
 import { api } from "@/lib/api/client";
+import { SERVICE_LANDINGS } from "@/content/services";
 import { triggerBookingSuccess } from "@/components/site/GlobalBookingSuccess";
 import { categoriesQ } from "@/lib/api/queries";
 import { cn } from "@/lib/utils";
@@ -16,7 +17,21 @@ import { cn } from "@/lib/utils";
 const emptyToUndef = <T extends z.ZodTypeAny>(schema: T) =>
   z.preprocess((v) => (v === "" || v === null ? undefined : v), schema);
 
-const CITIES = ["Faridabad", "Gurugram", "Noida", "Delhi", "Other"] as const;
+/** Service areas we cover. Kept broad — "Other" captures anything outside. */
+const CITIES = [
+  "Garia",
+  "Jadavpur",
+  "Tollygunge",
+  "Behala",
+  "Ballygunge",
+  "Salt Lake",
+  "New Town",
+  "Howrah",
+  "Barrackpore",
+  "Sonarpur / Narendrapur",
+  "Kolkata (Other Area)",
+  "Other",
+] as const;
 type City = (typeof CITIES)[number];
 
 const schema = z.object({
@@ -68,24 +83,23 @@ const STEPS = [
 
 /* ─────────────── Service helpers ─────────────── */
 
-const DEFAULT_SERVICES = [
-  { name: "Home Sample Collection", slug: "home-sample-collection" },
-  { name: "ICU Setup", slug: "icu-setup" },
-  { name: "Medical Equipment Rental", slug: "medical-equipment-rental" },
-  { name: "Physiotherapy & Recovery", slug: "physiotherapy-recovery" },
-  { name: "Mother & Baby Care", slug: "mother-baby-care" },
-  { name: "Elderly Care", slug: "elderly-care" },
-  { name: "Home Nursing Care", slug: "home-nursing-care" },
-];
+/** Fallback list, derived from the canonical catalogue. */
+const DEFAULT_SERVICES = SERVICE_LANDINGS.map((entry) => ({
+  name: entry.name,
+  slug: entry.categorySlug,
+}));
 
 const SERVICE_CARE_HINTS: Record<string, string> = {
-  "Home Sample Collection": "What test/sample collection is required?",
-  "ICU Setup": "What ICU setup and equipment are needed?",
-  "Medical Equipment Rental": "Which equipment is required and for how long?",
-  "Physiotherapy & Recovery": "What type of physiotherapy is required?",
-  "Mother & Baby Care": "What type of mother/baby care is needed?",
-  "Elderly Care": "What type of elderly care is required?",
-  "Home Nursing Care": "What type of nursing care is required?",
+  "Home Nursing Services": "What nursing care is required — injection, dressing, monitoring?",
+  "Patient Care & Attendant Services":
+    "Describe the patient's condition and whether you prefer male or female staff.",
+  "Elder Care & Senior Citizen Assistance":
+    "What does your parent need help with through the day?",
+  "Hospital Escort & Assistance": "Which hospital, which date, and what is planned?",
+  "Baby & Newborn Care": "How old is the baby, and which shift do you need?",
+  "Aya Services": "Home or hospital duty, and male or female Aya?",
+  "House Maid & Domestic Help": "Which tasks and how many hours a day?",
+  "Housekeeping Services": "Which premises, and how many staff do you need?",
 };
 
 /* ─────────────── Main Component ─────────────── */

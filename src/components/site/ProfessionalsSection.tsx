@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
+import { SERVICE_LANDINGS } from "@/content/services";
 import { motion, type Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/site/Section";
@@ -29,93 +30,40 @@ type TileItem = {
 const DEFAULT_HEADING = "Professionals dedicated to your health";
 
 const DEFAULT_DESCRIPTION =
-  "Nupun Home Health Care provides a qualified team of nursing staff, care attendants, physiotherapists and equipment specialists — available 8, 12 or 24 hours as per your requirement.";
+  "Unique Nurse and Aya Services supplies qualified nurses, Aya, patient attendants, baby caregivers, maids and housekeeping staff across Kolkata — on 8, 12 or 24-hour shifts, as your family needs.";
 
 const DEFAULT_FEATURES: FeatureItem[] = [
   {
-    title: "ICU at Home",
+    title: "Nurses, Aya & Attendants",
     description:
-      "Hospital-grade ICU setup delivered and monitored by expert critical care nurses at home.",
-    icon: "icu",
+      "One agency for clinical nursing and everyday bedside care — we will tell you which one you actually need.",
+    icon: "staff",
   },
   {
     title: "Verified & Trained Staff",
     description:
-      "Every nurse and attendant is background-checked and medically trained before entering your home.",
+      "Aadhaar, address and reference checks on file for every nurse, Aya and maid we place.",
     icon: "shield-check",
   },
   {
     title: "24/7 Care Coordination",
     description:
-      "A dedicated care advisor monitors your case round-the-clock and is always one call away.",
+      "A coordinator in Garia stays reachable, arranges replacements and keeps the family updated.",
     icon: "clock",
   },
-];const DEFAULT_TILES: TileItem[] = [
-  {
-    image: "/assets/service_img_8_desktop.jpg",
-    count: "24/7",
-    title: "I​nfection Control Nurse Services",
-    description: "Infection prevention & control support and training",
-    cta_label: "Learn More",
-    cta_link: "/infection-control-nurse",
-  },
-  {
-    image: "/assets/categories/nursing-v2.jpg?v=2",
-    count: "200+",
-    title: "Home Nursing Care",
-    description: "Round-the-clock bedside medical care",
-    cta_label: "Book Now",
-    cta_link: "/booking",
-  },
-  {
-    image: "/assets/categories/elder.jpg?v=2",
-    count: "150+",
-    title: "Elderly Care",
-    description: "Daily living support & elderly companionship",
-    cta_label: "Book Now",
-    cta_link: "/booking",
-  },
-  {
-    image: "/assets/categories/mother-baby.png",
-    count: "50+",
-    title: "Mother & Baby Care",
-    description: "Post-delivery care for mother & newborn",
-    cta_label: "Book Now",
-    cta_link: "/booking",
-  },
-  {
-    image: "/assets/categories/physio-v2.jpg?v=2",
-    count: "45+",
-    title: "Physiotherapy & Recovery",
-    description: "In-home rehab & pain recovery",
-    cta_label: "Book Now",
-    cta_link: "/booking",
-  },
-  {
-    image: "/assets/categories/equipment-v2.jpg?v=2",
-    count: "100+",
-    title: "Medical Equipment",
-    description: "Rental medical equipment at home",
-    cta_label: "Book Now",
-    cta_link: "/medical-equipment",
-  },
-  {
-    image: "/assets/categories/icu-setup.png",
-    count: "30+",
-    title: "ICU Setup",
-    description: "Hospital-grade ICU setup delivered",
-    cta_label: "Book Now",
-    cta_link: "/booking",
-  },
-  {
-    image: "/assets/categories/home-sample.png",
-    count: "500+",
-    title: "Home Sample Collection",
-    description: "Lab tests from the comfort of home",
-    cta_label: "Book Now",
-    cta_link: "/booking",
-  },
 ];
+
+const TILE_COUNTS = ["200+", "180+", "150+", "120+", "90+", "250+", "140+", "60+"];
+
+/** Tiles derived from the canonical catalogue (API content overrides these). */
+const DEFAULT_TILES: TileItem[] = SERVICE_LANDINGS.map((entry, i) => ({
+  image: entry.heroImage,
+  count: TILE_COUNTS[i] ?? "100+",
+  title: entry.name,
+  description: entry.eyebrow,
+  cta_label: "Learn More",
+  cta_link: `/${entry.slug}`,
+}));
 
 /* ---------- Animation variants ---------- */
 
@@ -158,13 +106,13 @@ function FeatureIcon({ icon, iconImage, className = "" }: { icon: string; iconIm
   }
 
   switch (icon) {
-    case "icu":
+    case "staff":
       return (
-        <img
-          src="/assets/icu-icon.png"
-          alt="ICU at Home"
-          className={className.replace("h-6 w-6", "h-9 w-9 md:h-10 md:w-10") + " object-contain mix-blend-multiply scale-110"}
-        />
+        <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
       );
     case "shield-check":
       return (

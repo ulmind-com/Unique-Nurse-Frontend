@@ -4,17 +4,18 @@ import { motion } from "framer-motion";
 import { ShieldCheck, Phone } from "lucide-react";
 import { settingsQ } from "@/lib/api/queries";
 import { Section } from "@/components/site/Section";
+import { SITE, mapEmbedUrl as defaultMapEmbed } from "@/config/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Nupun Home Health Care Services" },
+      { title: "About — Unique Nurse and Aya Services" },
       {
         name: "description",
-        content: "Nupun Home Health Care Services provides reliable healthcare and personal care support at home for patients, elderly people and families.",
+        content: "Unique Nurse and Aya Services provides reliable healthcare and personal care support at home for patients, elderly people and families.",
       },
-      { property: "og:title", content: "About — Nupun Home Health Care" },
-      { property: "og:description", content: "Nupun Home Health Care Services provides reliable healthcare and personal care support at home." },
+      { property: "og:title", content: "About — Unique Nurse and Aya Services" },
+      { property: "og:description", content: "Unique Nurse and Aya Services provides reliable healthcare and personal care support at home." },
       { property: "og:url", content: "/about" },
     ],
     links: [{ rel: "canonical", href: "/about" }],
@@ -28,8 +29,8 @@ function AboutPage() {
   const { data: settings } = useQuery(settingsQ());
 
   // Hero section data
-  const heroTitle = settings?.about_hero_title || "ABOUT NUPUN";
-  const heroDescription = settings?.about_hero_description || "Nupun Home Health Care Services provides reliable and compassionate healthcare support in the comfort of your home.\n\nWe connect families with trained and verified nurses, caregivers and healthcare professionals, offering personalized care based on each patient needs.\n\n. Flexible care options designed around your requirements.\n. Professional nursing, elderly care, physiotherapy and recovery support.\n. Patient - focused care with safety, dignity and compassion.\n. Reliable support for patient and families throughout their care journey.";
+  const heroTitle = settings?.about_hero_title || `ABOUT ${SITE.shortName.toUpperCase()}`;
+  const heroDescription = settings?.about_hero_description || SITE.description;
 
   // Split description into text and bullets
   const lines = heroDescription.split('\n').map((l: string) => l.trim()).filter(Boolean);
@@ -43,37 +44,21 @@ function AboutPage() {
     }
   });
 
-  // Founders data
+  // Founders / leadership — admin-managed. We deliberately ship no invented
+  // bios here; the section simply hides until real people are added.
   const founders: Array<{ name: string; role: string; image: string; description: string }> =
-    (settings as any)?.about_founders?.length
-      ? (settings as any).about_founders.map((f: any) => ({
-          name: f.name,
-          role: f.role,
-          image: typeof f.image === "string" ? f.image : f.image?.url || "https://i.pravatar.cc/300",
-          description: f.description,
-        }))
-      : [
-          {
-            name: "Sandeep Anand",
-            role: "Founder, Nupun Home Health Care",
-            image: "https://i.pravatar.cc/300?u=sandeep",
-            description:
-              "With over two decades of leadership experience across PepsiCo, ITC, GSK, and Walmart, and an MBA from SP Jain (SPJIMR), Sandeep has built and managed large-scale operations where reliability is non-negotiable.\n\nThe vision for Nupun is deeply personal, emerging from his experience navigating the lack of organized elderly care during his parents' terminal illnesses. He combines operational excellence with emotional purpose to create care that is structured, dependable, and reassuring for families.",
-          },
-          {
-            name: "Megha Gandhi",
-            role: "Co-Founder, Nupun Home Health Care",
-            image: "https://i.pravatar.cc/300?u=megha",
-            description:
-              "Having managed business leadership roles across YES Bank, HDFC Bank, and Axis Bank, Megha has spent her career working closely with senior citizens. This professional background, coupled with the personal loss of her mother, deeply shaped her commitment to dignity and empathy.\n\nAt Nupun, Megha leads with compassion, ensuring that every service is personal, respectful, and built on a foundation of absolute trust to redefine the elder care experience.",
-          },
-        ];
+    ((settings as any)?.about_founders ?? []).map((f: any) => ({
+      name: f.name,
+      role: f.role,
+      image: typeof f.image === "string" ? f.image : f.image?.url || "",
+      description: f.description,
+    }));
 
   // Address data
-  const addressName = (settings as any)?.about_address_name || "Nupun Home Health Care";
-  const addressLine1 = (settings as any)?.about_address_line1 || "5th Floor, Tower-C, Unitech Cyber Park";
-  const addressLine2 = (settings as any)?.about_address_line2 || "Sector-39, Gurgaon, India – 122003";
-  const mapEmbedUrl = (settings as any)?.about_map_embed_url || "https://maps.google.com/maps?q=Sector+62,+Faridabad,+Haryana+121004&t=&z=14&ie=UTF8&iwloc=&output=embed";
+  const addressName = (settings as any)?.about_address_name || SITE.name;
+  const addressLine1 = (settings as any)?.about_address_line1 || SITE.address.line1;
+  const addressLine2 = (settings as any)?.about_address_line2 || SITE.address.line2;
+  const mapEmbedUrl = (settings as any)?.about_map_embed_url || defaultMapEmbed;
 
   return (
     <>
@@ -132,8 +117,9 @@ function AboutPage() {
         </div>
       </div>
 
-      {/* ── Our Founders Section ──────────────────────────────────────────────── */}
-      <Section className="pt-16 pb-12 lg:pt-20 lg:pb-16 bg-[#FAFAFA]">
+      {/* ── Our Founders Section (admin-managed; hidden when empty) ─────────── */}
+      {founders.length > 0 && (
+      <Section className="pt-16 pb-12 lg:pt-20 lg:pb-16 bg-muted">
         <div className="container-x">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-center text-foreground mb-12 lg:mb-16">
             Our Founders
@@ -165,9 +151,10 @@ function AboutPage() {
           </div>
         </div>
       </Section>
+      )}
 
       {/* ── Our Address Section ──────────────────────────────────────────────── */}
-      <Section className="pt-8 pb-20 lg:pb-24 bg-[#FAFAFA]">
+      <Section className="pt-8 pb-20 lg:pb-24 bg-muted">
         <div className="container-x max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Address Info */}

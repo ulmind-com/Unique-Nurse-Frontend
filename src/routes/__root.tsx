@@ -19,6 +19,7 @@ import { GlobalBookingSuccess } from "../components/site/GlobalBookingSuccess";
 import { Toaster } from "../components/ui/sonner";
 import { useQuery } from "@tanstack/react-query";
 import { settingsQ } from "../lib/api/queries";
+import { SITE } from "@/config/site";
 
 function NotFoundComponent() {
   return (
@@ -32,7 +33,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background"
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-sm font-medium text-primary-foreground"
           >
             Go home
           </Link>
@@ -62,7 +63,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background"
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-sm font-medium text-primary-foreground"
           >
             Try again
           </button>
@@ -83,33 +84,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Nupun Home Health Care Services — Premium care, delivered home" },
+      { title: `${SITE.name} — Nursing, Aya & Patient Care in Kolkata` },
       {
         name: "description",
         content:
-          "Verified nurses, physiotherapists and premium medical equipment — booked in minutes, delivered to your door. Rated 5-star by families across the region.",
+          SITE.description,
       },
-      { property: "og:site_name", content: "Nupun Home Health Care" },
+      { property: "og:site_name", content: "Unique Nurse and Aya Services" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#33C4C7" },
+      { name: "theme-color", content: "#b3122b" },
       {
         property: "og:title",
-        content: "Nupun Home Health Care Services — Premium care, delivered home",
+        content: `${SITE.name} — Nursing, Aya & Patient Care in Kolkata`,
       },
       {
         name: "twitter:title",
-        content: "Nupun Home Health Care Services — Premium care, delivered home",
+        content: `${SITE.name} — Nursing, Aya & Patient Care in Kolkata`,
       },
       {
         property: "og:description",
         content:
-          "Verified nurses, physiotherapists and premium medical equipment — booked in minutes, delivered to your door. Rated 5-star by families across the region.",
+          SITE.description,
       },
       {
         name: "twitter:description",
         content:
-          "Verified nurses, physiotherapists and premium medical equipment — booked in minutes, delivered to your door. Rated 5-star by families across the region.",
+          SITE.description,
       },
     ],
     links: [
@@ -135,9 +136,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "MedicalOrganization",
-          name: "Nupun Home Health Care Services",
-          medicalSpecialty: ["Nursing", "Physiotherapy", "ElderCare"],
+          "@type": "MedicalBusiness",
+          name: SITE.name,
+          description: SITE.description,
+          telephone: SITE.phone,
+          email: SITE.email,
+          areaServed: "Kolkata, West Bengal, India",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: SITE.address.line1,
+            addressLocality: SITE.address.locality,
+            addressRegion: SITE.address.state,
+            postalCode: SITE.address.pincode,
+            addressCountry: "IN",
+          },
+          openingHoursSpecification: {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+            ],
+            opens: "00:00",
+            closes: "23:59",
+          },
+          medicalSpecialty: ["Nursing", "Geriatric", "PrimaryCare"],
         }),
       },
     ],

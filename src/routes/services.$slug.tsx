@@ -21,10 +21,10 @@ export const Route = createFileRoute("/services/$slug")({
   },
   head: ({ loaderData, params }) => ({
     meta: [
-      { title: `${loaderData?.title ?? "Service"} — Nupun Home Health Care` },
+      { title: `${loaderData?.title ?? "Service"} — Unique Nurse and Aya Services` },
       {
         name: "description",
-        content: loaderData?.description ?? "Home health care service by Nupun.",
+        content: loaderData?.description ?? "Home health care service by Unique Nurse and Aya Services.",
       },
       { property: "og:title", content: loaderData?.title ?? "Service" },
       { property: "og:description", content: loaderData?.description ?? "" },

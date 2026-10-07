@@ -1,10 +1,10 @@
-# Nupun Health Elevated
+# Unique Nurse and Aya Services — Frontend
 
 You are a Principal Product Designer, Senior React Architect, UI/UX Expert and Frontend Engineer with 15+ years of experience building premium SaaS products and luxury healthcare websites.
 
 Your task is to build the COMPLETE PUBLIC WEBSITE for
 
-Nupun Home Health Care Services
+Unique Nurse and Aya Services
 
 IMPORTANT
 
@@ -24,11 +24,11 @@ You MUST connect everything to the existing backend.
 
 Existing Swagger
 
-https://nupun-health-backend.onrender.com/docs
+https://unique-nurse-aya-api.onrender.com/docs
 
 OpenAPI
 
-https://nupun-health-backend.onrender.com/openapi.json
+https://unique-nurse-aya-api.onrender.com/openapi.json
 
 Everything must consume the existing REST APIs.
 
@@ -596,7 +596,7 @@ Always generate premium production-quality code.
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://nupun-care-nexus.lovable.app
+**Live app**: deployed on Vercel
 
 ## Build with Lovable
 

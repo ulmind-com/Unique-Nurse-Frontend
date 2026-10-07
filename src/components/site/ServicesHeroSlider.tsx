@@ -5,83 +5,45 @@ import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight } from "lucide-reac
 import { useQuery } from "@tanstack/react-query";
 import { settingsQ } from "@/lib/api/queries";
 import type { HeroSlide } from "@/lib/api/types";
-import { ElderCareBookingModal } from "@/components/forms/ElderCareBookingModal";
-import { EquipmentBookingModal } from "@/components/forms/EquipmentBookingModal";
-import { NursingBookingModal } from "@/components/forms/NursingBookingModal";
-import { MotherBabyBookingModal } from "@/components/forms/MotherBabyBookingModal";
-import { IcuBookingModal } from "@/components/forms/IcuBookingModal";
-import { LabBookingModal } from "@/components/forms/LabBookingModal";
-import { PhysioBookingModal } from "@/components/forms/PhysioBookingModal";
-import { InfectionEnquiryModal } from "@/components/forms/InfectionEnquiryModal";
+import { ServiceBookingModal } from "@/components/forms/ServiceBookingModal";
+import { SERVICE_LANDINGS } from "@/content/services";
 
 /* ── Default / fallback slides (static assets) ────────────────────── */
 
-const FALLBACK_SLIDES: HeroSlide[] = [
-  {
-    title: "Expert Home Nursing Care",
-    subtitle: "Compassionate and reliable home healthcare with professional nurses available 24/7.",
-    button_text: "Book a Nurse",
-    button_link: "/services/home-nursing-care",
-    image_desktop: { url: "/assets/hero-desktop/hero_desktop_1_nursing_1786737139820.jpg" },
-    image_mobile: { url: "/assets/hero-mobile/hero_mobile_1_nursing_1786737195851.jpg" },
+/**
+ * Mobile/desktop hero art for the first few verticals. Anything without a
+ * dedicated pair falls back to the landing-page hero image.
+ */
+const SLIDE_ART: Record<string, { desktop: string; mobile: string }> = {
+  "home-nursing": {
+    desktop: "/assets/hero-desktop/hero_desktop_1_nursing_1786737139820.jpg",
+    mobile: "/assets/hero-mobile/hero_mobile_1_nursing_1786737195851.jpg",
   },
-  {
-    title: "Compassionate Elderly Care",
-    subtitle: "Dedicated caregivers providing dignified, patient-centred elder care in the comfort of home.",
-    button_text: "Book an Attendant",
-    button_link: "/services/elderly-care",
-    image_desktop: { url: "/assets/hero-desktop/hero_desktop_2_elderly_1786737273511.jpg" },
-    image_mobile: { url: "/assets/hero-mobile/hero_mobile_2_elderly_1786737290173.jpg" },
+  "elder-care": {
+    desktop: "/assets/hero-desktop/hero_desktop_2_elderly_1786737273511.jpg",
+    mobile: "/assets/hero-mobile/hero_mobile_2_elderly_1786737290173.jpg",
   },
-  {
-    title: "Mother & Baby Care",
-    subtitle: "Specialized postnatal care to ensure the health and comfort of both mother and newborn.",
-    button_text: "Book Newborn Care",
-    button_link: "/services/mother-and-baby-care",
-    image_desktop: { url: "/assets/hero-desktop/hero_desktop_3_mother_baby_1786737385210.jpg" },
-    image_mobile: { url: "/assets/hero-mobile/hero_mobile_3_mother_baby_1786737410186.jpg" },
+  "baby-care": {
+    desktop: "/assets/hero-desktop/hero_desktop_3_mother_baby_1786737385210.jpg",
+    mobile: "/assets/hero-mobile/hero_mobile_3_mother_baby_1786737410186.jpg",
   },
-  {
-    title: "Physiotherapy & Recovery",
-    subtitle: "Medically supervised recovery care and physiotherapy delivered at home for faster healing.",
-    button_text: "Book a Physiotherapist",
-    button_link: "/services/physiotherapy-and-recovery",
-    image_desktop: { url: "/assets/hero-desktop/hero_desktop_4_physio_1786737419510.jpg" },
-    image_mobile: { url: "/assets/hero-mobile/hero_mobile_4_physio_1786737469387.jpg" },
+  "hospital-escort": {
+    desktop: "/assets/hero-desktop/hero_desktop_6_icu_1786737546853.jpg",
+    mobile: "/assets/hero-mobile/hero_mobile_6_icu_1786737784974.jpg",
   },
-  {
-    title: "Medical Equipment Rental",
-    subtitle: "High-quality, sanitized medical equipment like hospital beds and oxygen concentrators delivered to your home.",
-    button_text: "Rent Equipment Now",
-    button_link: "/equipment",
-    image_desktop: { url: "/assets/hero-desktop/hero_desktop_5_equipment_1786737493628.jpg" },
-    image_mobile: { url: "/assets/hero-mobile/hero_mobile_5_equipment_1786737520362.jpg" },
-  },
-  {
-    title: "Professional ICU Setup",
-    subtitle: "Complete ICU-level care and equipment setup at home for critically ill patients.",
-    button_text: "Request ICU Setup",
-    button_link: "/contact",
-    image_desktop: { url: "/assets/hero-desktop/hero_desktop_6_icu_1786737546853.jpg" },
-    image_mobile: { url: "/assets/hero-mobile/hero_mobile_6_icu_1786737784974.jpg" },
-  },
-  {
-    title: "Home Sample Collection",
-    subtitle: "Safe and hygienic diagnostic sample collection right from your doorstep by professional phlebotomists.",
-    button_text: "Book Home Lab Test",
-    button_link: "/sample-collection",
-    image_desktop: { url: "/assets/sample-collection/web.jpg" },
-    image_mobile: { url: "/assets/sample-collection/mobile.jpg" },
-  },
-  {
-    title: "I​nfection Control Nurse Services",
-    subtitle: "Professional infection prevention & control support, training and guidance for healthcare settings.",
-    button_text: "Enquire Now",
-    button_link: "/infection-control-nurse",
-    image_desktop: { url: "/assets/service_img_8_desktop.jpg" },
-    image_mobile: { url: "/assets/service_img_8_desktop.jpg" },
-  }
-];
+};
+
+const FALLBACK_SLIDES: HeroSlide[] = SERVICE_LANDINGS.map((entry) => {
+  const art = SLIDE_ART[entry.slug];
+  return {
+    title: `${entry.heroTitle} ${entry.heroHighlight}`,
+    subtitle: entry.heroDescription,
+    button_text: `Book ${entry.navLabel}`,
+    button_link: `/${entry.slug}`,
+    image_desktop: { url: art?.desktop ?? entry.heroImage },
+    image_mobile: { url: art?.mobile ?? entry.heroImage },
+  };
+});
 
 const SLIDE_DURATION = 6000; // ms per slide
 
@@ -166,7 +128,7 @@ const buttonVariant = {
 /* ── Component ────────────────────────────────────────────────────── */
 export function ServicesHeroSlider({ slides: dynamicSlides }: { slides?: HeroSlide[] }) {
   const { data: settings } = useQuery(settingsQ());
-  const whatsapp = settings?.whatsapp || "+919813095627";
+  const whatsapp = settings?.whatsapp || "+919432941098";
 
   const slides = dynamicSlides && dynamicSlides.length > 0 ? dynamicSlides : FALLBACK_SLIDES;
 
@@ -264,7 +226,7 @@ export function ServicesHeroSlider({ slides: dynamicSlides }: { slides?: HeroSli
               className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              Nupun Home Health Care
+              Unique Nurse and Aya Services
             </motion.div>
 
             {/* Title */}
@@ -301,36 +263,36 @@ export function ServicesHeroSlider({ slides: dynamicSlides }: { slides?: HeroSli
                   </button>
                 );
 
-                if (link.includes("elderly")) {
-                  return <ElderCareBookingModal onOpenChange={setIsModalOpen}>{btnContent}</ElderCareBookingModal>;
+                const haystack = `${slide.title ?? ""} ${link}`.toLowerCase();
+                const matched =
+                  SERVICE_LANDINGS.find((entry) => link.includes(entry.slug)) ??
+                  SERVICE_LANDINGS.find((entry) =>
+                    haystack.includes(entry.navLabel.toLowerCase()),
+                  );
+
+                if (matched) {
+                  return (
+                    <ServiceBookingModal
+                      onOpenChange={setIsModalOpen}
+                      modalTitle={`Book ${matched.name}`}
+                      modalDescription="Share a few details and our care coordinator will call you back shortly."
+                      serviceOptions={matched.bookingOptions}
+                      selectPlaceholder="Select what you need"
+                      source="services-hero"
+                    >
+                      {btnContent}
+                    </ServiceBookingModal>
+                  );
                 }
-                if (link.includes("mother")) {
-                  return <MotherBabyBookingModal onOpenChange={setIsModalOpen}>{btnContent}</MotherBabyBookingModal>;
-                }
-                const t = (slide.title || "").toLowerCase();
-                if (t.includes("infection") || link.includes("infection")) {
-                  return <InfectionEnquiryModal onOpenChange={setIsModalOpen}>{btnContent}</InfectionEnquiryModal>;
-                }
-                if (t.includes("icu") || link.includes("icu")) {
-                  return <IcuBookingModal onOpenChange={setIsModalOpen}>{btnContent}</IcuBookingModal>;
-                }
-                if (t.includes("sample") || link.includes("sample")) {
-                  return <LabBookingModal onOpenChange={setIsModalOpen}>{btnContent}</LabBookingModal>;
-                }
-                if (link.includes("nursing")) {
-                  return <NursingBookingModal onOpenChange={setIsModalOpen}>{btnContent}</NursingBookingModal>;
-                }
-                if (link.includes("physio")) {
-                  return <PhysioBookingModal onOpenChange={setIsModalOpen}>{btnContent}</PhysioBookingModal>;
-                }
-                if (link.includes("equipment")) {
-                  return <EquipmentBookingModal onOpenChange={setIsModalOpen}>{btnContent}</EquipmentBookingModal>;
+
+                if (link) {
+                  return <Link to={link as any}>{btnContent}</Link>;
                 }
 
                 return (
-                  <Link to={link || "/booking"}>
+                  <ServiceBookingModal onOpenChange={setIsModalOpen} source="services-hero">
                     {btnContent}
-                  </Link>
+                  </ServiceBookingModal>
                 );
               })()}
 

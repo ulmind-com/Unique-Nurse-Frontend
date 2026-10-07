@@ -8,74 +8,30 @@ import { useCallback, useEffect } from "react";
 import type { Category } from "@/lib/api/types";
 import { categoriesQ } from "@/lib/api/queries";
 import { CategoryCardShape } from "./CategoryCardShape";
-const nursingAsset = { url: "/assets/categories/nursing-v2.jpg?v=2" };
-const elderAsset = { url: "/assets/categories/elder.jpg?v=2" };
-const motherBabyAsset = { url: "/assets/categories/mother-baby.png" };
-const physioAsset = { url: "/assets/categories/physio-v2.jpg?v=2" };
-const equipmentAsset = { url: "/assets/categories/equipment-v2.jpg?v=2" };
-const icuSetupAsset = { url: "/assets/categories/icu-setup.png" };
-const homeSampleAsset = { url: "/assets/categories/home-sample.png" };
+import { SERVICE_LANDINGS } from "@/content/services";
 
 type Variant = "a" | "b" | "c" | "d";
 
-const fallbacks: Array<{ title: string; description: string; image: string; variant: Variant; dedicatedLink?: string }> = [
-  {
-    title: "I​nfection Control Nurse Services",
-    description: "Professional infection prevention & control support, training and guidance for healthcare settings.",
-    image: "/assets/service_img_8_desktop.jpg",
-    variant: "d",
-    dedicatedLink: "/infection-control-nurse",
-  },
-  {
-    title: "Home Nursing Care",
-    description: "24/7 qualified nurses at your home — injections, wound care, monitoring.",
-    image: nursingAsset.url,
-    variant: "a",
-    dedicatedLink: "/nursing-care",
-  },
-  {
-    title: "Elderly Care",
-    description: "Compassionate daily companionship and assisted living support.",
-    image: elderAsset.url,
-    variant: "b",
-    dedicatedLink: "/elderly-care",
-  },
-  {
-    title: "Mother & Baby Care",
-    description: "Expert postnatal care for new mothers & newborns — feeding support, baby care & recovery.",
-    image: motherBabyAsset.url,
-    variant: "c",
-    dedicatedLink: "/mother-baby-care",
-  },
-  {
-    title: "Physiotherapy & Recovery",
-    description: "In-home rehab, mobility & pain management by expert therapists.",
-    image: physioAsset.url,
-    variant: "b",
-    dedicatedLink: "/physiotherapy",
-  },
-  {
-    title: "Medical Equipment Rental",
-    description: "Hospital-grade beds, oxygen, monitors — delivered & installed.",
-    image: equipmentAsset.url,
-    variant: "d",
-    dedicatedLink: "/medical-equipment",
-  },
-  {
-    title: "ICU Setup",
-    description: "Complete home ICU setup with ventilators, monitors & trained ICU nurses round the clock.",
-    image: icuSetupAsset.url,
-    variant: "a",
-    dedicatedLink: "/icu-setup",
-  },
-  {
-    title: "Home Sample Collection",
-    description: "Convenient at-home blood tests & lab sample collection by certified phlebotomists.",
-    image: homeSampleAsset.url,
-    variant: "c",
-    dedicatedLink: "/sample-collection",
-  },
-];
+const VARIANTS: Variant[] = ["a", "b", "c", "d"];
+
+/**
+ * Fallback cards derived from the canonical catalogue, so the showcase renders
+ * the real eight verticals even before the API responds. Backend categories
+ * remain the source of truth whenever they are available.
+ */
+const fallbacks: Array<{
+  title: string;
+  description: string;
+  image: string;
+  variant: Variant;
+  dedicatedLink?: string;
+}> = SERVICE_LANDINGS.map((entry, i) => ({
+  title: entry.name,
+  description: entry.heroDescription,
+  image: entry.heroImage,
+  variant: VARIANTS[i % VARIANTS.length],
+  dedicatedLink: `/${entry.slug}`,
+}));
 
 export function usePremiumCategories() {
   const { data: categoriesData } = useQuery(categoriesQ({ limit: 10 }));
@@ -90,16 +46,28 @@ export function usePremiumCategories() {
     slug: string | undefined | null,
     fb?: (typeof fallbacks)[number],
   ): string | null => {
-    const n = (name ?? "").toLowerCase();
-    const s = (slug ?? "").toLowerCase();
-    if (n.includes("infection") || s.includes("infection")) return "/infection-control-nurse";
-    if (n.includes("elder") || n.includes("senior") || s.includes("elder")) return "/elderly-care";
-    if (n.includes("nurs") || s.includes("nurs")) return "/nursing-care";
-    if (n.includes("mother") || n.includes("baby") || s.includes("mother")) return "/mother-baby-care";
-    if (n.includes("physio") || s.includes("physio")) return "/physiotherapy";
-    if (n.includes("equip") || s.includes("equip")) return "/medical-equipment";
-    if (n.includes("icu") || s.includes("icu")) return "/icu-setup";
-    if (n.includes("sample") || s.includes("sample")) return "/sample-collection";
+    const haystack = `${name ?? ""} ${slug ?? ""}`.toLowerCase();
+    const matched = SERVICE_LANDINGS.find(
+      (entry) =>
+        haystack.includes(entry.categorySlug) ||
+        entry.name.toLowerCase() === (name ?? "").trim().toLowerCase(),
+    );
+    if (matched) return `/${matched.slug}`;
+
+    // Keyword fallback for categories renamed in the admin panel.
+    const byKeyword: Array<[RegExp, string]> = [
+      [/aya/, "/aya-services"],
+      [/housekeep|cleaning/, "/housekeeping"],
+      [/maid|domestic|cook/, "/house-maid"],
+      [/baby|newborn|mother|japa/, "/baby-care"],
+      [/escort|hospital|admission|discharge/, "/hospital-escort"],
+      [/elder|senior|geriatric/, "/elder-care"],
+      [/attendant|bedridden|patient care/, "/patient-care"],
+      [/nurs/, "/home-nursing"],
+    ];
+    for (const [test, href] of byKeyword) {
+      if (test.test(haystack)) return href;
+    }
     return fb?.dedicatedLink ?? null;
   };
 
@@ -107,7 +75,7 @@ export function usePremiumCategories() {
   const normImage = (raw?: string | null): string =>
     !raw ? "" : raw.includes("?") ? raw : `${raw}?v=2`;
 
-  const variants: Variant[] = ["a", "b", "c", "d"];
+  const variants = VARIANTS;
 
   // Backend categories are the source of truth so newly-added categories in the
   // admin panel actually show up on the site. The hardcoded `fallbacks` only

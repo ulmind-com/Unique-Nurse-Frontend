@@ -85,10 +85,10 @@ export function ContactForm() {
             <option value="Home Nursing Care">Home Nursing Care</option>
             <option value="Elderly Care">Elderly Care</option>
             <option value="Mother & Baby Care">Mother & Baby Care</option>
-            <option value="Physiotherapy & Recovery">Physiotherapy & Recovery</option>
-            <option value="Medical Equipment Rental">Medical Equipment Rental</option>
-            <option value="ICU Setup">ICU Setup</option>
-            <option value="Home Sample Collection">Home Sample Collection</option>
+            <option value="Hospital Escort & Assistance">Hospital Escort & Assistance</option>
+            <option value="Aya Services">Aya Services</option>
+            <option value="House Maid & Domestic Help">House Maid & Domestic Help</option>
+            <option value="Housekeeping Services">Housekeeping Services</option>
           </select>
           <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground/70 pointer-events-none" />
         </div>

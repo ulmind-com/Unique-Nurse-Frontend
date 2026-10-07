@@ -32,7 +32,7 @@ function BlogDetailsPage() {
 
   if (isError && !dummyMatch) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F8F9FA]">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-muted">
         <h1 className="text-4xl font-display font-bold text-foreground mb-4">Blog not found</h1>
         <p className="text-muted-foreground mb-8">The article you're looking for doesn't exist.</p>
         <Link
@@ -133,7 +133,7 @@ function BlogDetailsPage() {
                       "Recovery Feels More Comfortable at Home",
                       "Less Stress Helps Faster Healing",
                       "Personalized 1-on-1 Attention",
-                      "Reduced Risk of Hospital Infections",
+                      "Lower Risk of Hospital-Acquired Infection",
                     ].map((item, i) => (
                       <li
                         key={i}
@@ -165,8 +165,8 @@ function BlogDetailsPage() {
                         1. What is home health care?
                       </h4>
                       <p className="text-[15px] m-0">
-                        It provides hospital-like critical care support at home with trained nurses,
-                        equipment, monitoring, and medical supervision.
+                        It brings trained nurses and attendants to the patient's own home for
+                        clinical care, daily assistance and monitoring, instead of a hospital stay.
                       </p>
                     </div>
                     <div>
@@ -174,8 +174,8 @@ function BlogDetailsPage() {
                         2. Who needs it after surgery?
                       </h4>
                       <p className="text-[15px] m-0">
-                        Patients recovering from major surgery, elderly patients, or those needing
-                        close monitoring may need home ICU support.
+                        Patients recovering from major surgery, elderly patients and anyone needing
+                        close daily monitoring usually benefit from a nurse or attendant at home.
                       </p>
                     </div>
                     <div>

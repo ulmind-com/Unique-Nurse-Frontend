@@ -10,13 +10,13 @@ import { EmptyState, Section } from "@/components/site/Section";
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "FAQ — Nupun Home Health Care" },
+      { title: "FAQ — Unique Nurse and Aya Services" },
       {
         name: "description",
-        content: "Answers to common questions about Nupun's care services and equipment.",
+        content: "Answers to common questions about our nursing, Aya, attendant, baby care and household staff services.",
       },
-      { property: "og:title", content: "FAQ — Nupun Home Health Care" },
-      { property: "og:description", content: "Common questions about our care and equipment." },
+      { property: "og:title", content: "FAQ — Unique Nurse and Aya Services" },
+      { property: "og:description", content: "Common questions about our care and household staff services." },
       { property: "og:url", content: "/faq" },
     ],
     links: [{ rel: "canonical", href: "/faq" }],
@@ -30,14 +30,20 @@ export const Route = createFileRoute("/faq")({
  * page's FAQ section (with #faq hash) for that category.
  */
 const CATEGORY_ROUTES: Record<string, string> = {
-  "Elder Care": "/elderly-care#faq",
-  "Medical Care": "/nursing-care#faq",
-  "Nursing Care": "/nursing-care#faq",
-  "Physiotherapy": "/physiotherapy#faq",
-  "Mother & Baby Care": "/mother-baby-care#faq",
-  "Equipment": "/medical-equipment#faq",
-  "Medical Equipment": "/medical-equipment#faq",
-  "ICU Setup": "/icu-setup#faq",
+  "Home Nursing Services": "/home-nursing#faq",
+  "Nursing Care": "/home-nursing#faq",
+  "Medical Care": "/home-nursing#faq",
+  "Patient Care": "/patient-care#faq",
+  "Patient Attendant": "/patient-care#faq",
+  "Elder Care": "/elder-care#faq",
+  "Elderly Care": "/elder-care#faq",
+  "Hospital Escort": "/hospital-escort#faq",
+  "Baby Care": "/baby-care#faq",
+  "Mother & Baby Care": "/baby-care#faq",
+  "Aya Services": "/aya-services#faq",
+  "House Maid": "/house-maid#faq",
+  "Domestic Help": "/house-maid#faq",
+  "Housekeeping": "/housekeeping#faq",
   "Services": "/services#faq",
   "Support": "/faq",
 };
@@ -75,7 +81,7 @@ const DUMMY_FAQS = [
     id: "5",
     question: "Can you help after a hospital discharge or surgery at home?",
     answer:
-      "Yes, our post-operative care team ensures a smooth transition from hospital to home, including wound care and physiotherapy.",
+      "Yes. Our nurses handle post-operative recovery at home — wound dressing, medication schedules and vitals monitoring — following the hospital discharge plan.",
     category: "Medical Care",
   },
   {
@@ -121,7 +127,7 @@ function FaqPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#fafafa] pt-32 pb-24">
+    <main className="min-h-screen bg-muted pt-32 pb-24">
       <div className="container-x max-w-4xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="font-display text-4xl md:text-[44px] font-bold tracking-tight text-foreground mb-8">

@@ -48,26 +48,6 @@ export type Service = {
   status?: string;
 };
 
-export type Equipment = {
-  id: string;
-  title: string;
-  slug: string;
-  short_description?: string | null;
-  description?: string | null;
-  category_id?: string | null;
-  category_name?: string | null;
-  featured_image?: string | null;
-  gallery?: string[];
-  rental_price?: number | null;
-  price_unit?: string | null;
-  daily_rate?: number | null;
-  features?: string[];
-  specs?: Record<string, string> | null;
-  is_available?: boolean;
-  is_featured?: boolean;
-  status?: string;
-};
-
 export type Blog = {
   id: string;
   title: string;
@@ -341,45 +321,3 @@ export type StaffMember = {
   updated_at?: string;
 };
 
-export type ICServiceItem = {
-  title: string;
-  description: string;
-  order: number;
-};
-
-export type ICWhyChooseItem = {
-  title: string;
-  description: string;
-};
-
-export type ICHowItWorksStep = {
-  step_label: string;
-  title: string;
-  description: string;
-};
-
-export type ICFaqItem = {
-  question: string;
-  answer: string;
-};
-
-export type InfectionControlPageContent = {
-  id: string;
-  hero_heading: string;
-  hero_subheading: string;
-  hero_short_text: string;
-  hero_btn_primary: string;
-  hero_btn_secondary: string;
-  intro_heading: string;
-  intro_content: string;
-  services: ICServiceItem[];
-  why_choose_items: ICWhyChooseItem[];
-  how_it_works_steps: ICHowItWorksStep[];
-  faqs: ICFaqItem[];
-  enquiry_heading: string;
-  enquiry_subheading: string;
-  enquiry_requirement_options: string[];
-  home_card_title: string;
-  home_card_description: string;
-  home_card_button_text: string;
-};

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Section } from "./Section";
 
-const TABS = ["Health Attendant", "Physiotherapist", "Nurse", "Nanny", "Japa"];
+const TABS = ["Patient Attendant", "Aya", "Nurse", "Baby Care", "Maid"];
 
 const STAFF_DATA = [
   {
@@ -32,7 +32,7 @@ const STAFF_DATA = [
   {
     id: 4,
     name: "Rahul",
-    role: "Physiotherapist",
+    role: "Aya",
     rating: 5,
     image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=300&auto=format&fit=crop",
     days: ["7 Days", "15 Days", "30 Days"],
@@ -59,14 +59,14 @@ export function StaffSection() {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`whitespace-nowrap px-4 py-3 text-[15px] font-medium transition-colors relative ${
-                  activeTab === tab ? "text-[#F97316]" : "text-slate-600 hover:text-slate-900"
+                  activeTab === tab ? "text-primary" : "text-slate-600 hover:text-slate-900"
                 }`}
               >
                 {tab}
                 {activeTab === tab && (
                   <motion.div
                     layoutId="activeStaffTab"
-                    className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-[#F97316]"
+                    className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-primary"
                   />
                 )}
               </button>
@@ -96,7 +96,7 @@ export function StaffSection() {
               <div className="flex gap-2 justify-center w-full">
                 {staff.days.map((day, index) => (
                   <div key={index} className="flex flex-col items-center">
-                    <span className="text-[#F97316] font-bold text-sm leading-none">{day.split(' ')[0]}</span>
+                    <span className="text-primary font-bold text-sm leading-none">{day.split(' ')[0]}</span>
                     <span className="text-[10px] text-gray-500 uppercase tracking-wide mt-0.5">{day.split(' ')[1]}</span>
                   </div>
                 ))}

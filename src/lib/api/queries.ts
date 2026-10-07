@@ -3,9 +3,7 @@ import { api, type Paginated } from "./client";
 import type {
   Blog,
   Career,
-  Equipment,
   Faq,
-  InfectionControlPageContent,
   ReviewSummary,
   SeoMeta,
   Service,
@@ -47,21 +45,6 @@ export const serviceBySlugQ = (slug: string) =>
   queryOptions({
     queryKey: ["service", slug],
     queryFn: ({ signal }) => api.get<Service>(`/services/slug/${slug}`, undefined, signal),
-    staleTime: FIVE_MIN,
-  });
-
-export const equipmentQ = (params: { limit?: number } = {}) =>
-  queryOptions({
-    queryKey: ["equipment", params],
-    queryFn: ({ signal }) =>
-      api.get<Paginated<Equipment>>("/equipment", { page_size: params.limit ?? 24 }, signal),
-    staleTime: FIVE_MIN,
-  });
-
-export const equipmentBySlugQ = (slug: string) =>
-  queryOptions({
-    queryKey: ["equipment-item", slug],
-    queryFn: ({ signal }) => api.get<Equipment>(`/equipment/slug/${slug}`, undefined, signal),
     staleTime: FIVE_MIN,
   });
 
@@ -157,14 +140,6 @@ export const staffQ = (params: { limit?: number; category?: string } = {}) =>
         { page_size: params.limit ?? 50, is_active: true, category: params.category },
         signal,
       ),
-    staleTime: FIVE_MIN,
-  });
-
-export const infectionControlQ = () =>
-  queryOptions({
-    queryKey: ["infection-control"],
-    queryFn: ({ signal }) =>
-      api.get<InfectionControlPageContent>("/infection-control", undefined, signal),
     staleTime: FIVE_MIN,
   });
 

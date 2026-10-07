@@ -25,12 +25,12 @@ export const DUMMY_BLOGS: Blog[] = [
   },
   {
     id: "dummy-2",
-    title: "How Home ICU Supports Post Surgery Recovery",
-    slug: "how-home-icu-supports-post-surgery-recovery",
+    title: "Nurse, Attendant or Aya — Which One Does Your Patient Actually Need?",
+    slug: "nurse-attendant-or-aya-which-to-hire",
     excerpt:
-      "Recovering after surgery is not always easy. Even after a successful operation, home ICU setups can provide better comfort, constant monitoring, and reduce the risk of hospital-acquired infections.",
+      "The three roles cost very different amounts and do very different work. A plain guide to picking the right one for your patient without overpaying for skills you do not need.",
     featured_image: "/assets/services/nurse-companion.jpg",
-    category_name: "Medical",
+    category_name: "Patient Care",
     created_at: new Date(Date.now() - 86400000).toISOString(),
     status: "published",
   },
@@ -47,51 +47,51 @@ export const DUMMY_BLOGS: Blog[] = [
   },
   {
     id: "dummy-4",
-    title: "Things To Check Before Hiring a Physiotherapist at Home",
-    slug: "things-to-check-before-hiring-physiotherapist",
+    title: "Hiring a Live-In Maid in Kolkata: What to Agree Before Day One",
+    slug: "hiring-live-in-maid-kolkata-checklist",
     excerpt:
-      "Physiotherapy is crucial for recovery. Here are the key things you must verify before hiring a professional, from certifications to understanding their approach to personalized care.",
-    featured_image: "/assets/services/physio.jpg",
-    category_name: "Home Care",
+      "Hours, weekly offs, wages, accommodation and the exact list of tasks — settling these in writing up front is what keeps a household placement working for years instead of weeks.",
+    featured_image: "/assets/services/daily_living.png",
+    category_name: "Household Help",
     created_at: new Date(Date.now() - 259200000).toISOString(),
     status: "published",
   },
   {
     id: "dummy-5",
-    title: "What Does an Infection Control Nurse Do? Roles & Responsibilities Explained",
-    slug: "what-does-infection-control-nurse-do-roles-responsibilities",
+    title: "Hospital Day Ahead? A Checklist for Families Sending an Escort",
+    slug: "hospital-escort-checklist-for-families",
     excerpt:
-      "An Infection Control Nurse plays a vital role in healthcare settings by monitoring, preventing and managing infections. Learn about their key responsibilities, from implementing infection-prevention protocols to educating healthcare staff on proper hygiene and safety practices.",
-    featured_image: "/assets/services/infection-control.png",
-    category_name: "Infection Control",
+      "Reports, cards, cash, the right file and a clear plan for who decides what. What to hand over to an escort so the admission or test day actually goes smoothly.",
+    featured_image: "/assets/hero-desktop/hero_desktop_6_icu_1786737546853.jpg",
+    category_name: "Hospital Support",
     created_at: new Date(Date.now() - 345600000).toISOString(),
     status: "published",
   },
   {
     id: "dummy-6",
-    title: "Infection Prevention & Control: Essential Practices for Healthcare Settings",
-    slug: "infection-prevention-control-essential-practices-healthcare",
+    title: "Caring for a Bedridden Patient at Home Without Bedsores",
+    slug: "bedridden-patient-care-preventing-bedsores",
     excerpt:
-      "Infection prevention and control is a fundamental aspect of safe healthcare delivery. This blog covers essential IPC practices including hand hygiene, PPE usage, biomedical waste management and environmental hygiene that every healthcare professional should follow.",
-    featured_image: "/assets/services/infection-control.png",
-    category_name: "Infection Control",
+      "Position changes, skin checks, bedding and nutrition. The practical routine a trained attendant follows to keep a bedridden patient comfortable and sore-free.",
+    featured_image: "/assets/services/bedridden_care.png",
+    category_name: "Patient Care",
     created_at: new Date(Date.now() - 432000000).toISOString(),
     status: "published",
   },
   {
     id: "dummy-7",
-    title: "How to Become an Infection Control Nurse: Skills, Training & Career Guide",
-    slug: "how-to-become-infection-control-nurse-skills-training-career",
+    title: "Bringing in a Japa for the First Month: What to Expect",
+    slug: "japa-newborn-care-first-month-guide",
     excerpt:
-      "Interested in a career in infection control nursing? This guide covers the educational qualifications, essential skills, training requirements and career opportunities available for aspiring Infection Control Nurses in the healthcare industry.",
-    featured_image: "/assets/services/infection-control.png",
-    category_name: "Infection Control",
+      "Night feeds, massage, sterilising and the mother's own recovery. How Japa and newborn care usually works in a Kolkata home, and when to book it.",
+    featured_image: "/assets/hero-desktop/hero_desktop_3_mother_baby_1786737385210.jpg",
+    category_name: "Baby Care",
     created_at: new Date(Date.now() - 518400000).toISOString(),
     status: "published",
   },
 ];
 
-const CATEGORIES = ["All Blogs", "Home Care", "Medical", "Nursing", "Infection Control"];
+const CATEGORIES = ["All Blogs", "Home Care", "Patient Care", "Hospital Support", "Baby Care", "Household Help"];
 
 function BlogsPage() {
   const { data } = useQuery(blogsQ({ limit: 50 }));
@@ -106,9 +106,9 @@ function BlogsPage() {
       : blogs.filter((b) => b.category_name === activeCategory);
 
   return (
-    <main className="min-h-screen bg-[#F8F9FA] relative flex flex-col">
+    <main className="min-h-screen bg-muted relative flex flex-col">
       {/* ── Custom Split Hero (Matched with About Page) ── */}
-      <div className="relative isolate overflow-hidden bg-[#fafafa]">
+      <div className="relative isolate overflow-hidden bg-muted">
         {/* Subtle background blob */}
         <div className="absolute top-0 right-0 -z-10 w-full h-full opacity-30 bg-gradient-to-l from-primary/10 to-transparent pointer-events-none" />
 
@@ -151,8 +151,8 @@ function BlogsPage() {
             className="w-full h-full object-cover object-top"
           />
           {/* Fade mask for smooth blending into the background color */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fafafa] via-[#fafafa]/50 to-transparent lg:w-48" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#fafafa] via-transparent to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-r from-muted via-muted/50 to-transparent lg:w-48" />
+          <div className="absolute inset-0 bg-gradient-to-t from-muted via-transparent to-transparent lg:hidden" />
         </div>
       </div>
 

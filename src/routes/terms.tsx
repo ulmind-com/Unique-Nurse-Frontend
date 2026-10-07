@@ -8,8 +8,8 @@ import { LegalPage } from "@/components/site/LegalPage";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms & Conditions — Nupun Home Health Care" },
-      { name: "description", content: "Terms governing use of Nupun's services and website." },
+      { title: "Terms & Conditions — Unique Nurse and Aya Services" },
+      { name: "description", content: "Terms governing use of Unique Nurse and Aya Services's services and website." },
       { property: "og:url", content: "/terms" },
     ],
     links: [{ rel: "canonical", href: "/terms" }],
@@ -23,11 +23,11 @@ function Page() {
   const defaultSections = [
     {
       title: "Acceptance",
-      body: "By booking care, renting equipment or using this website, you agree to these terms.",
+      body: "By booking a service, requesting staff or using this website, you agree to these terms.",
     },
     {
       title: "Services",
-      body: "Nupun coordinates home nursing, physiotherapy, elder care and equipment rentals. Availability, pricing and clinical suitability are confirmed at the time of booking.",
+      body: "Unique Nurse and Aya Services places trained nurses, Aya, patient attendants, baby caregivers, maids and housekeeping staff at homes, hospitals and nursing homes. Availability, pricing and suitability are confirmed at the time of booking.",
     },
     {
       title: "Payments",
@@ -43,7 +43,7 @@ function Page() {
     },
     {
       title: "Liability",
-      body: "To the maximum extent permitted by law, Nupun's liability is limited to the fees paid for the specific service in question.",
+      body: "To the maximum extent permitted by law, Unique Nurse and Aya Services's liability is limited to the fees paid for the specific service in question.",
     },
     {
       title: "Changes",

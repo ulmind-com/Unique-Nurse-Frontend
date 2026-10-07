@@ -9,114 +9,37 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as BookingRouteImport } from './routes/booking'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as ElderlyCareRouteImport } from './routes/elderly-care'
-import { Route as FaqRouteImport } from './routes/faq'
-import { Route as IcuSetupRouteImport } from './routes/icu-setup'
-import { Route as InfectionControlNurseRouteImport } from './routes/infection-control-nurse'
-import { Route as MedicalEquipmentRouteImport } from './routes/medical-equipment'
-import { Route as MotherBabyCareRouteImport } from './routes/mother-baby-care'
-import { Route as NursingCareRouteImport } from './routes/nursing-care'
-import { Route as PhysiotherapyRouteImport } from './routes/physiotherapy'
-import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
-import { Route as SampleCollectionRouteImport } from './routes/sample-collection'
-import { Route as TermsRouteImport } from './routes/terms'
-import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as VideosRouteImport } from './routes/videos'
-import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
-import { Route as BlogsIndexRouteImport } from './routes/blogs.index'
-import { Route as BlogsSlugRouteImport } from './routes/blogs.$slug'
-import { Route as CareersIndexRouteImport } from './routes/careers.index'
-import { Route as CareersSlugRouteImport } from './routes/careers.$slug'
-import { Route as EquipmentIndexRouteImport } from './routes/equipment.index'
-import { Route as EquipmentSlugRouteImport } from './routes/equipment.$slug'
+import { Route as TestimonialsRouteImport } from './routes/testimonials'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PatientCareRouteImport } from './routes/patient-care'
+import { Route as HousekeepingRouteImport } from './routes/housekeeping'
+import { Route as HouseMaidRouteImport } from './routes/house-maid'
+import { Route as HospitalEscortRouteImport } from './routes/hospital-escort'
+import { Route as HomeNursingRouteImport } from './routes/home-nursing'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as ElderCareRouteImport } from './routes/elder-care'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BookingRouteImport } from './routes/booking'
+import { Route as BabyCareRouteImport } from './routes/baby-care'
+import { Route as AyaServicesRouteImport } from './routes/aya-services'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as CareersIndexRouteImport } from './routes/careers.index'
+import { Route as BlogsIndexRouteImport } from './routes/blogs.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as CareersSlugRouteImport } from './routes/careers.$slug'
+import { Route as BlogsSlugRouteImport } from './routes/blogs.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiPublicProxySplatRouteImport } from './routes/api/public/proxy.$'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BookingRoute = BookingRouteImport.update({
-  id: '/booking',
-  path: '/booking',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ElderlyCareRoute = ElderlyCareRouteImport.update({
-  id: '/elderly-care',
-  path: '/elderly-care',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FaqRoute = FaqRouteImport.update({
-  id: '/faq',
-  path: '/faq',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IcuSetupRoute = IcuSetupRouteImport.update({
-  id: '/icu-setup',
-  path: '/icu-setup',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InfectionControlNurseRoute = InfectionControlNurseRouteImport.update({
-  id: '/infection-control-nurse',
-  path: '/infection-control-nurse',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MedicalEquipmentRoute = MedicalEquipmentRouteImport.update({
-  id: '/medical-equipment',
-  path: '/medical-equipment',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MotherBabyCareRoute = MotherBabyCareRouteImport.update({
-  id: '/mother-baby-care',
-  path: '/mother-baby-care',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NursingCareRoute = NursingCareRouteImport.update({
-  id: '/nursing-care',
-  path: '/nursing-care',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PhysiotherapyRoute = PhysiotherapyRouteImport.update({
-  id: '/physiotherapy',
-  path: '/physiotherapy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RefundPolicyRoute = RefundPolicyRouteImport.update({
-  id: '/refund-policy',
-  path: '/refund-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SampleCollectionRoute = SampleCollectionRouteImport.update({
-  id: '/sample-collection',
-  path: '/sample-collection',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
+const VideosRoute = VideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TestimonialsRoute = TestimonialsRouteImport.update({
@@ -124,49 +47,84 @@ const TestimonialsRoute = TestimonialsRouteImport.update({
   path: '/testimonials',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VideosRoute = VideosRouteImport.update({
-  id: '/videos',
-  path: '/videos',
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogIndexRoute = BlogIndexRouteImport.update({
-  id: '/blog/',
-  path: '/blog/',
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogsIndexRoute = BlogsIndexRouteImport.update({
-  id: '/blogs/',
-  path: '/blogs/',
+const PatientCareRoute = PatientCareRouteImport.update({
+  id: '/patient-care',
+  path: '/patient-care',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogsSlugRoute = BlogsSlugRouteImport.update({
-  id: '/blogs/$slug',
-  path: '/blogs/$slug',
+const HousekeepingRoute = HousekeepingRouteImport.update({
+  id: '/housekeeping',
+  path: '/housekeeping',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CareersIndexRoute = CareersIndexRouteImport.update({
-  id: '/careers/',
-  path: '/careers/',
+const HouseMaidRoute = HouseMaidRouteImport.update({
+  id: '/house-maid',
+  path: '/house-maid',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CareersSlugRoute = CareersSlugRouteImport.update({
-  id: '/careers/$slug',
-  path: '/careers/$slug',
+const HospitalEscortRoute = HospitalEscortRouteImport.update({
+  id: '/hospital-escort',
+  path: '/hospital-escort',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EquipmentIndexRoute = EquipmentIndexRouteImport.update({
-  id: '/equipment/',
-  path: '/equipment/',
+const HomeNursingRoute = HomeNursingRouteImport.update({
+  id: '/home-nursing',
+  path: '/home-nursing',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EquipmentSlugRoute = EquipmentSlugRouteImport.update({
-  id: '/equipment/$slug',
-  path: '/equipment/$slug',
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElderCareRoute = ElderCareRouteImport.update({
+  id: '/elder-care',
+  path: '/elder-care',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingRoute = BookingRouteImport.update({
+  id: '/booking',
+  path: '/booking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BabyCareRoute = BabyCareRouteImport.update({
+  id: '/baby-care',
+  path: '/baby-care',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AyaServicesRoute = AyaServicesRouteImport.update({
+  id: '/aya-services',
+  path: '/aya-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
@@ -174,9 +132,39 @@ const ServicesIndexRoute = ServicesIndexRouteImport.update({
   path: '/services/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CareersIndexRoute = CareersIndexRouteImport.update({
+  id: '/careers/',
+  path: '/careers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsIndexRoute = BlogsIndexRouteImport.update({
+  id: '/blogs/',
+  path: '/blogs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
   path: '/services/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersSlugRoute = CareersSlugRouteImport.update({
+  id: '/careers/$slug',
+  path: '/careers/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsSlugRoute = BlogsSlugRouteImport.update({
+  id: '/blogs/$slug',
+  path: '/blogs/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicProxySplatRoute = ApiPublicProxySplatRouteImport.update({
@@ -188,62 +176,58 @@ const ApiPublicProxySplatRoute = ApiPublicProxySplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/aya-services': typeof AyaServicesRoute
+  '/baby-care': typeof BabyCareRoute
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
-  '/elderly-care': typeof ElderlyCareRoute
+  '/elder-care': typeof ElderCareRoute
   '/faq': typeof FaqRoute
-  '/icu-setup': typeof IcuSetupRoute
-  '/infection-control-nurse': typeof InfectionControlNurseRoute
-  '/medical-equipment': typeof MedicalEquipmentRoute
-  '/mother-baby-care': typeof MotherBabyCareRoute
-  '/nursing-care': typeof NursingCareRoute
-  '/physiotherapy': typeof PhysiotherapyRoute
+  '/home-nursing': typeof HomeNursingRoute
+  '/hospital-escort': typeof HospitalEscortRoute
+  '/house-maid': typeof HouseMaidRoute
+  '/housekeeping': typeof HousekeepingRoute
+  '/patient-care': typeof PatientCareRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
-  '/sample-collection': typeof SampleCollectionRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/videos': typeof VideosRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blogs/$slug': typeof BlogsSlugRoute
   '/careers/$slug': typeof CareersSlugRoute
-  '/equipment/$slug': typeof EquipmentSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/blogs/': typeof BlogsIndexRoute
   '/careers/': typeof CareersIndexRoute
-  '/equipment/': typeof EquipmentIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/api/public/proxy/$': typeof ApiPublicProxySplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/aya-services': typeof AyaServicesRoute
+  '/baby-care': typeof BabyCareRoute
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
-  '/elderly-care': typeof ElderlyCareRoute
+  '/elder-care': typeof ElderCareRoute
   '/faq': typeof FaqRoute
-  '/icu-setup': typeof IcuSetupRoute
-  '/infection-control-nurse': typeof InfectionControlNurseRoute
-  '/medical-equipment': typeof MedicalEquipmentRoute
-  '/mother-baby-care': typeof MotherBabyCareRoute
-  '/nursing-care': typeof NursingCareRoute
-  '/physiotherapy': typeof PhysiotherapyRoute
+  '/home-nursing': typeof HomeNursingRoute
+  '/hospital-escort': typeof HospitalEscortRoute
+  '/house-maid': typeof HouseMaidRoute
+  '/housekeeping': typeof HousekeepingRoute
+  '/patient-care': typeof PatientCareRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
-  '/sample-collection': typeof SampleCollectionRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/videos': typeof VideosRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blogs/$slug': typeof BlogsSlugRoute
   '/careers/$slug': typeof CareersSlugRoute
-  '/equipment/$slug': typeof EquipmentSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog': typeof BlogIndexRoute
   '/blogs': typeof BlogsIndexRoute
   '/careers': typeof CareersIndexRoute
-  '/equipment': typeof EquipmentIndexRoute
   '/services': typeof ServicesIndexRoute
   '/api/public/proxy/$': typeof ApiPublicProxySplatRoute
 }
@@ -251,31 +235,29 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/aya-services': typeof AyaServicesRoute
+  '/baby-care': typeof BabyCareRoute
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
-  '/elderly-care': typeof ElderlyCareRoute
+  '/elder-care': typeof ElderCareRoute
   '/faq': typeof FaqRoute
-  '/icu-setup': typeof IcuSetupRoute
-  '/infection-control-nurse': typeof InfectionControlNurseRoute
-  '/medical-equipment': typeof MedicalEquipmentRoute
-  '/mother-baby-care': typeof MotherBabyCareRoute
-  '/nursing-care': typeof NursingCareRoute
-  '/physiotherapy': typeof PhysiotherapyRoute
+  '/home-nursing': typeof HomeNursingRoute
+  '/hospital-escort': typeof HospitalEscortRoute
+  '/house-maid': typeof HouseMaidRoute
+  '/housekeeping': typeof HousekeepingRoute
+  '/patient-care': typeof PatientCareRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
-  '/sample-collection': typeof SampleCollectionRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/videos': typeof VideosRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blogs/$slug': typeof BlogsSlugRoute
   '/careers/$slug': typeof CareersSlugRoute
-  '/equipment/$slug': typeof EquipmentSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/blogs/': typeof BlogsIndexRoute
   '/careers/': typeof CareersIndexRoute
-  '/equipment/': typeof EquipmentIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/api/public/proxy/$': typeof ApiPublicProxySplatRoute
 }
@@ -284,93 +266,87 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/aya-services'
+    | '/baby-care'
     | '/booking'
     | '/contact'
-    | '/elderly-care'
+    | '/elder-care'
     | '/faq'
-    | '/icu-setup'
-    | '/infection-control-nurse'
-    | '/medical-equipment'
-    | '/mother-baby-care'
-    | '/nursing-care'
-    | '/physiotherapy'
+    | '/home-nursing'
+    | '/hospital-escort'
+    | '/house-maid'
+    | '/housekeeping'
+    | '/patient-care'
     | '/privacy'
     | '/refund-policy'
-    | '/sample-collection'
     | '/terms'
     | '/testimonials'
     | '/videos'
     | '/blog/$slug'
     | '/blogs/$slug'
     | '/careers/$slug'
-    | '/equipment/$slug'
     | '/services/$slug'
     | '/blog/'
     | '/blogs/'
     | '/careers/'
-    | '/equipment/'
     | '/services/'
     | '/api/public/proxy/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/aya-services'
+    | '/baby-care'
     | '/booking'
     | '/contact'
-    | '/elderly-care'
+    | '/elder-care'
     | '/faq'
-    | '/icu-setup'
-    | '/infection-control-nurse'
-    | '/medical-equipment'
-    | '/mother-baby-care'
-    | '/nursing-care'
-    | '/physiotherapy'
+    | '/home-nursing'
+    | '/hospital-escort'
+    | '/house-maid'
+    | '/housekeeping'
+    | '/patient-care'
     | '/privacy'
     | '/refund-policy'
-    | '/sample-collection'
     | '/terms'
     | '/testimonials'
     | '/videos'
     | '/blog/$slug'
     | '/blogs/$slug'
     | '/careers/$slug'
-    | '/equipment/$slug'
     | '/services/$slug'
     | '/blog'
     | '/blogs'
     | '/careers'
-    | '/equipment'
     | '/services'
     | '/api/public/proxy/$'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/aya-services'
+    | '/baby-care'
     | '/booking'
     | '/contact'
-    | '/elderly-care'
+    | '/elder-care'
     | '/faq'
-    | '/icu-setup'
-    | '/infection-control-nurse'
-    | '/medical-equipment'
-    | '/mother-baby-care'
-    | '/nursing-care'
-    | '/physiotherapy'
+    | '/home-nursing'
+    | '/hospital-escort'
+    | '/house-maid'
+    | '/housekeeping'
+    | '/patient-care'
     | '/privacy'
     | '/refund-policy'
-    | '/sample-collection'
     | '/terms'
     | '/testimonials'
     | '/videos'
     | '/blog/$slug'
     | '/blogs/$slug'
     | '/careers/$slug'
-    | '/equipment/$slug'
     | '/services/$slug'
     | '/blog/'
     | '/blogs/'
     | '/careers/'
-    | '/equipment/'
     | '/services/'
     | '/api/public/proxy/$'
   fileRoutesById: FileRoutesById
@@ -378,147 +354,40 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AyaServicesRoute: typeof AyaServicesRoute
+  BabyCareRoute: typeof BabyCareRoute
   BookingRoute: typeof BookingRoute
   ContactRoute: typeof ContactRoute
-  ElderlyCareRoute: typeof ElderlyCareRoute
+  ElderCareRoute: typeof ElderCareRoute
   FaqRoute: typeof FaqRoute
-  IcuSetupRoute: typeof IcuSetupRoute
-  InfectionControlNurseRoute: typeof InfectionControlNurseRoute
-  MedicalEquipmentRoute: typeof MedicalEquipmentRoute
-  MotherBabyCareRoute: typeof MotherBabyCareRoute
-  NursingCareRoute: typeof NursingCareRoute
-  PhysiotherapyRoute: typeof PhysiotherapyRoute
+  HomeNursingRoute: typeof HomeNursingRoute
+  HospitalEscortRoute: typeof HospitalEscortRoute
+  HouseMaidRoute: typeof HouseMaidRoute
+  HousekeepingRoute: typeof HousekeepingRoute
+  PatientCareRoute: typeof PatientCareRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
-  SampleCollectionRoute: typeof SampleCollectionRoute
   TermsRoute: typeof TermsRoute
   TestimonialsRoute: typeof TestimonialsRoute
   VideosRoute: typeof VideosRoute
   BlogSlugRoute: typeof BlogSlugRoute
   BlogsSlugRoute: typeof BlogsSlugRoute
   CareersSlugRoute: typeof CareersSlugRoute
-  EquipmentSlugRoute: typeof EquipmentSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   BlogsIndexRoute: typeof BlogsIndexRoute
   CareersIndexRoute: typeof CareersIndexRoute
-  EquipmentIndexRoute: typeof EquipmentIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
   ApiPublicProxySplatRoute: typeof ApiPublicProxySplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/booking': {
-      id: '/booking'
-      path: '/booking'
-      fullPath: '/booking'
-      preLoaderRoute: typeof BookingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/elderly-care': {
-      id: '/elderly-care'
-      path: '/elderly-care'
-      fullPath: '/elderly-care'
-      preLoaderRoute: typeof ElderlyCareRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/faq': {
-      id: '/faq'
-      path: '/faq'
-      fullPath: '/faq'
-      preLoaderRoute: typeof FaqRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/icu-setup': {
-      id: '/icu-setup'
-      path: '/icu-setup'
-      fullPath: '/icu-setup'
-      preLoaderRoute: typeof IcuSetupRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/infection-control-nurse': {
-      id: '/infection-control-nurse'
-      path: '/infection-control-nurse'
-      fullPath: '/infection-control-nurse'
-      preLoaderRoute: typeof InfectionControlNurseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/medical-equipment': {
-      id: '/medical-equipment'
-      path: '/medical-equipment'
-      fullPath: '/medical-equipment'
-      preLoaderRoute: typeof MedicalEquipmentRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mother-baby-care': {
-      id: '/mother-baby-care'
-      path: '/mother-baby-care'
-      fullPath: '/mother-baby-care'
-      preLoaderRoute: typeof MotherBabyCareRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/nursing-care': {
-      id: '/nursing-care'
-      path: '/nursing-care'
-      fullPath: '/nursing-care'
-      preLoaderRoute: typeof NursingCareRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/physiotherapy': {
-      id: '/physiotherapy'
-      path: '/physiotherapy'
-      fullPath: '/physiotherapy'
-      preLoaderRoute: typeof PhysiotherapyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/refund-policy': {
-      id: '/refund-policy'
-      path: '/refund-policy'
-      fullPath: '/refund-policy'
-      preLoaderRoute: typeof RefundPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sample-collection': {
-      id: '/sample-collection'
-      path: '/sample-collection'
-      fullPath: '/sample-collection'
-      preLoaderRoute: typeof SampleCollectionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
+    '/videos': {
+      id: '/videos'
+      path: '/videos'
+      fullPath: '/videos'
+      preLoaderRoute: typeof VideosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/testimonials': {
@@ -528,67 +397,116 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimonialsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/videos': {
-      id: '/videos'
-      path: '/videos'
-      fullPath: '/videos'
-      preLoaderRoute: typeof VideosRouteImport
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/': {
-      id: '/blog/'
-      path: '/blog'
-      fullPath: '/blog/'
-      preLoaderRoute: typeof BlogIndexRouteImport
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blogs/': {
-      id: '/blogs/'
-      path: '/blogs'
-      fullPath: '/blogs/'
-      preLoaderRoute: typeof BlogsIndexRouteImport
+    '/patient-care': {
+      id: '/patient-care'
+      path: '/patient-care'
+      fullPath: '/patient-care'
+      preLoaderRoute: typeof PatientCareRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blogs/$slug': {
-      id: '/blogs/$slug'
-      path: '/blogs/$slug'
-      fullPath: '/blogs/$slug'
-      preLoaderRoute: typeof BlogsSlugRouteImport
+    '/housekeeping': {
+      id: '/housekeeping'
+      path: '/housekeeping'
+      fullPath: '/housekeeping'
+      preLoaderRoute: typeof HousekeepingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/careers/': {
-      id: '/careers/'
-      path: '/careers'
-      fullPath: '/careers/'
-      preLoaderRoute: typeof CareersIndexRouteImport
+    '/house-maid': {
+      id: '/house-maid'
+      path: '/house-maid'
+      fullPath: '/house-maid'
+      preLoaderRoute: typeof HouseMaidRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/careers/$slug': {
-      id: '/careers/$slug'
-      path: '/careers/$slug'
-      fullPath: '/careers/$slug'
-      preLoaderRoute: typeof CareersSlugRouteImport
+    '/hospital-escort': {
+      id: '/hospital-escort'
+      path: '/hospital-escort'
+      fullPath: '/hospital-escort'
+      preLoaderRoute: typeof HospitalEscortRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/equipment/': {
-      id: '/equipment/'
-      path: '/equipment'
-      fullPath: '/equipment/'
-      preLoaderRoute: typeof EquipmentIndexRouteImport
+    '/home-nursing': {
+      id: '/home-nursing'
+      path: '/home-nursing'
+      fullPath: '/home-nursing'
+      preLoaderRoute: typeof HomeNursingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/equipment/$slug': {
-      id: '/equipment/$slug'
-      path: '/equipment/$slug'
-      fullPath: '/equipment/$slug'
-      preLoaderRoute: typeof EquipmentSlugRouteImport
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/elder-care': {
+      id: '/elder-care'
+      path: '/elder-care'
+      fullPath: '/elder-care'
+      preLoaderRoute: typeof ElderCareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/booking': {
+      id: '/booking'
+      path: '/booking'
+      fullPath: '/booking'
+      preLoaderRoute: typeof BookingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/baby-care': {
+      id: '/baby-care'
+      path: '/baby-care'
+      fullPath: '/baby-care'
+      preLoaderRoute: typeof BabyCareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aya-services': {
+      id: '/aya-services'
+      path: '/aya-services'
+      fullPath: '/aya-services'
+      preLoaderRoute: typeof AyaServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/': {
@@ -598,11 +516,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/careers/': {
+      id: '/careers/'
+      path: '/careers'
+      fullPath: '/careers/'
+      preLoaderRoute: typeof CareersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/': {
+      id: '/blogs/'
+      path: '/blogs'
+      fullPath: '/blogs/'
+      preLoaderRoute: typeof BlogsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/$slug': {
       id: '/services/$slug'
       path: '/services/$slug'
       fullPath: '/services/$slug'
       preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers/$slug': {
+      id: '/careers/$slug'
+      path: '/careers/$slug'
+      fullPath: '/careers/$slug'
+      preLoaderRoute: typeof CareersSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/$slug': {
+      id: '/blogs/$slug'
+      path: '/blogs/$slug'
+      fullPath: '/blogs/$slug'
+      preLoaderRoute: typeof BlogsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/proxy/$': {
@@ -618,31 +578,29 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AyaServicesRoute: AyaServicesRoute,
+  BabyCareRoute: BabyCareRoute,
   BookingRoute: BookingRoute,
   ContactRoute: ContactRoute,
-  ElderlyCareRoute: ElderlyCareRoute,
+  ElderCareRoute: ElderCareRoute,
   FaqRoute: FaqRoute,
-  IcuSetupRoute: IcuSetupRoute,
-  InfectionControlNurseRoute: InfectionControlNurseRoute,
-  MedicalEquipmentRoute: MedicalEquipmentRoute,
-  MotherBabyCareRoute: MotherBabyCareRoute,
-  NursingCareRoute: NursingCareRoute,
-  PhysiotherapyRoute: PhysiotherapyRoute,
+  HomeNursingRoute: HomeNursingRoute,
+  HospitalEscortRoute: HospitalEscortRoute,
+  HouseMaidRoute: HouseMaidRoute,
+  HousekeepingRoute: HousekeepingRoute,
+  PatientCareRoute: PatientCareRoute,
   PrivacyRoute: PrivacyRoute,
   RefundPolicyRoute: RefundPolicyRoute,
-  SampleCollectionRoute: SampleCollectionRoute,
   TermsRoute: TermsRoute,
   TestimonialsRoute: TestimonialsRoute,
   VideosRoute: VideosRoute,
   BlogSlugRoute: BlogSlugRoute,
   BlogsSlugRoute: BlogsSlugRoute,
   CareersSlugRoute: CareersSlugRoute,
-  EquipmentSlugRoute: EquipmentSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   BlogsIndexRoute: BlogsIndexRoute,
   CareersIndexRoute: CareersIndexRoute,
-  EquipmentIndexRoute: EquipmentIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
   ApiPublicProxySplatRoute: ApiPublicProxySplatRoute,
 }

@@ -26,27 +26,28 @@ const fallbackCategories = [
     color: "from-accent/30 to-primary/20",
   },
   {
-    title: "Physiotherapy",
-    description: "Rehabilitation and pain management in the comfort of home.",
+    title: "Aya Services",
+    description: "Male & female Aya for patients, elders and hospital duty.",
     icon: Activity,
     color: "from-primary/30 to-accent/20",
   },
   {
-    title: "Post-Surgery Care",
-    description: "Recovery support, wound care and medication management.",
-    icon: Syringe,
+    title: "Baby & Newborn Care",
+    description: "Experienced newborn caregivers and Japa support at home.",
+    icon: Baby,
     color: "from-accent/30 to-primary/20",
   },
 ];
 
 const iconMap: Record<string, React.ElementType> = {
-  "Home Nursing Care": Stethoscope,
-  "Elder Care": HeartPulse,
-  Physiotherapy: Activity,
-  "Post-Surgery Care": Syringe,
-  "ICU Setup at Home": Thermometer,
-  "Medical Equipment": Pill,
-  "Newborn & Mother Care": Baby,
+  "Home Nursing Services": Stethoscope,
+  "Patient Care & Attendant Services": Syringe,
+  "Elder Care & Senior Citizen Assistance": HeartPulse,
+  "Hospital Escort & Assistance": Thermometer,
+  "Baby & Newborn Care": Baby,
+  "Aya Services": Activity,
+  "House Maid & Domestic Help": Pill,
+  "Housekeeping Services": Pill,
 };
 
 export function CategoryShowcase({ services }: { services: Service[] }) {

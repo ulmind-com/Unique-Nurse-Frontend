@@ -3,13 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { settingsQ } from "@/lib/api/queries";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
-import { NursingBookingModal } from "@/components/forms/NursingBookingModal";
-import { MotherBabyBookingModal } from "@/components/forms/MotherBabyBookingModal";
-import { ElderCareBookingModal } from "@/components/forms/ElderCareBookingModal";
-import { PhysioBookingModal } from "@/components/forms/PhysioBookingModal";
-import { EquipmentBookingModal } from "@/components/forms/EquipmentBookingModal";
-import { IcuBookingModal } from "@/components/forms/IcuBookingModal";
-import { LabBookingModal } from "@/components/forms/LabBookingModal";
+import { ServiceBookingModal } from "@/components/forms/ServiceBookingModal";
+import { SERVICE_LANDINGS } from "@/content/services";
 
 type ServiceCard = {
   id: string;
@@ -22,200 +17,21 @@ type ServiceCard = {
   formOptions?: string[];
 };
 
-const SERVICES: ServiceCard[] = [
-  {
-    id: "infection",
-    title: "I​nfection Control Nurse Services",
-    image: "/assets/service_img_8_desktop.jpg",
-    features: [
-      "Infection Prevention & Control",
-      "Hand Hygiene & PPE Practices",
-      "Infection Control Training",
-      "Audit & Monitoring",
-      "Biomedical Waste Guidance",
-      "Home Healthcare Infection Prevention",
-    ],
-    buttonText: "Learn More",
-    buttonLink: "/infection-control-nurse",
-    selectLabel: "Select infection-control service",
-  },
-  {
-    id: "nursing",
-    title: "Home Nursing Care",
-    image: "/assets/services/nursing-care.png",
-    features: [
-      "Skilled Nursing Care at Home",
-      "Injection & IV Drip Services",
-      "Wound & Bed Sore Dressing",
-      "Catheter Insertion & Care",
-      "Ryles Tube Insertion & Feeding",
-      "Tracheostomy Care",
-      "Post-Hospitalization Care",
-      "BP & Sugar Monitoring",
-    ],
-    buttonText: "Book Nursing Care",
-    buttonLink: "/nursing-care",
-    selectLabel: "Select nursing service",
-    formOptions: [
-      "Skilled Nursing Care at Home",
-      "Injection & IV Drip Services",
-      "Wound & Bed Sore Dressing",
-      "Catheter Insertion & Care",
-      "Ryles Tube Insertion & Feeding",
-      "Tracheostomy Care",
-      "Post-Hospitalization Care",
-      "BP & Sugar Monitoring",
-      "Others",
-    ],
-  },
-  {
-    id: "elderly",
-    title: "Elderly Care",
-    image: "/assets/services/elderly-care.png",
-    features: [
-      "8, 12 & 24 Hour Elderly Care",
-      "Personal Hygiene & Sponging",
-      "Diaper & Toileting Care",
-      "Feeding & Medicine Assistance",
-      "Walking & Mobility Support",
-      "Bedridden Patient Care",
-      "Companionship & Daily Support",
-    ],
-    formOptions: [
-      "Elderly care",
-      "Patient care",
-      "Bedridden Care",
-      "24 Hours attendant",
-    ],
-    buttonText: "Book Elderly Care",
-    buttonLink: "/elderly-care",
-    selectLabel: "Select elderly care service",
-  },
-  {
-    id: "mother-baby",
-    title: "Mother & Baby Care",
-    image: "/assets/services/mother-baby-care.png",
-    features: [
-      "New Mother Care",
-      "Baby Care & Assistance",
-      "Mother Hygiene & Personal Care",
-      "Feeding Support",
-      "Postnatal Care Support",
-      "Newborn Daily Care",
-    ],
-    buttonText: "Book Mother & Baby Care",
-    selectLabel: "Select mother & baby care service",
-    formOptions: [
-      "New Mother Care",
-      "Baby Care & Assistance",
-      "Mother Hygiene & Personal Care",
-      "Feeding Support",
-      "Postnatal Care Support",
-      "Newborn Daily Care",
-      "Others",
-    ],
-  },
-  {
-    id: "physio",
-    title: "Physiotherapy & Recovery",
-    image: "/assets/services/physiotherapy.png",
-    features: [
-      "Physiotherapy at Home",
-      "Post-Surgery Rehabilitation",
-      "Stroke Rehabilitation",
-      "Mobility & Walking Training",
-      "Pain Management",
-      "Senior Physiotherapy",
-      "Exercise & Recovery Programs",
-    ],
-    buttonText: "Book Physiotherapy",
-    buttonLink: "/physiotherapy",
-    selectLabel: "Select physiotherapy service",
-    formOptions: [
-      "Physiotherapy at Home",
-      "Post-Surgery Rehabilitation",
-      "Stroke Rehabilitation",
-      "Mobility & Walking Training",
-      "Pain Management",
-      "Senior Physiotherapy",
-      "Exercise & Recovery Programs",
-      "Others",
-    ],
-  },
-  {
-    id: "equipment",
-    title: "Medical Equipment Rental",
-    image: "/assets/services/equipment-rental.png",
-    features: [
-      "Hospital Beds",
-      "Wheelchairs",
-      "Oxygen Concentrators",
-      "BiPAP & CPAP Machines",
-      "Suction Machines",
-      "Patient Care & Mobility Equipment",
-    ],
-    buttonText: "Rent Equipment",
-    buttonLink: "/medical-equipment",
-    selectLabel: "Select equipment type",
-    formOptions: [
-      "Hospital Beds",
-      "Wheelchairs",
-      "Oxygen Concentrators",
-      "BiPAP & CPAP Machines",
-      "Suction Machines",
-      "Patient Care & Mobility Equipment",
-      "Others",
-    ],
-  },
-  {
-    id: "icu",
-    title: "ICU Setup at Home",
-    image: "/assets/services/icu-setup.png",
-    features: [
-      "Home ICU Setup",
-      "ICU Bed & Essential Equipment",
-      "Oxygen Support",
-      "Suction Support",
-      "Monitoring Equipment",
-      "Trained Nursing Support",
-      "Critical Care Coordination",
-    ],
-    buttonText: "Book ICU Setup",
-    selectLabel: "Select ICU service",
-    formOptions: [
-      "Home ICU Setup",
-      "ICU Bed & Essential Equipment",
-      "Oxygen Support",
-      "Suction Support",
-      "Monitoring Equipment",
-      "Trained Nursing Support",
-      "Critical Care Coordination",
-      "Others",
-    ],
-  },
-  {
-    id: "sample",
-    title: "Home Sample Collection",
-    image: "/assets/services/home-sample.png",
-    features: [
-      "Blood Sample Collection",
-      "Urine Sample Collection",
-      "Other Routine Diagnostic Samples",
-      "Home Collection Service",
-      "Safe Sample Handling & Lab Coordination",
-    ],
-    buttonText: "Book Sample Collection",
-    selectLabel: "Select sample collection service",
-    formOptions: [
-      "Blood Sample Collection",
-      "Urine Sample Collection",
-      "Other Routine Diagnostic Samples",
-      "Home Collection Service",
-      "Safe Sample Handling & Lab Coordination",
-      "Others",
-    ],
-  },
-];
+/**
+ * Default cards, derived from the canonical service catalogue so the homepage
+ * can never drift from the landing pages. The admin panel can override the
+ * whole set through `settings.comprehensive_services`.
+ */
+const SERVICES: ServiceCard[] = SERVICE_LANDINGS.map((entry) => ({
+  id: entry.slug,
+  title: entry.name,
+  image: entry.heroImage,
+  features: entry.items.map((item) => item.title),
+  buttonText: `Book ${entry.navLabel}`,
+  buttonLink: `/${entry.slug}`,
+  selectLabel: "Select what you need",
+  formOptions: entry.bookingOptions,
+}));
 
 const cardStagger = {
   hidden: {},
@@ -295,11 +111,11 @@ export function ComprehensiveServicesSection() {
             </svg>
           </h2>
           <p className="mt-8 text-base md:text-lg leading-relaxed text-muted-foreground font-normal">
-            Specialized care verticals designed around your family's needs — combining hospital-grade precision with compassionate, attentive home care.
+            Nursing, Aya, attendants, elder and baby care, maids and housekeeping — one verified team for everything a family needs at home or in hospital.
           </p>
         </motion.div>
 
-        {/* 7 Service Cards Grid */}
+        {/* Service cards grid */}
         <motion.div
           variants={cardStagger}
           initial="hidden"
@@ -309,13 +125,9 @@ export function ComprehensiveServicesSection() {
         >
           {activeServices.map((service, index) => (
             <motion.article
-              // Key by position, NOT service.id. The SSR fallback and the
-              // backend disagree on the first card's id ("infection" vs
-              // "infection-control"); keying by id made React unmount/remount
-              // that card on the client swap, and the remounted framer-motion
-              // article got stuck hidden — so the Infection Control card
-              // vanished after a hard refresh. A stable index key updates the
-              // card in place instead, keeping it visible.
+              // Key by position, not service.id: the SSR fallback and the admin
+              // override can disagree on ids, and remounting a framer-motion card
+              // mid-swap left it stuck hidden. An index key updates in place.
               key={index}
               variants={cardItem}
               className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-border/80 bg-surface/95 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.15)] hover:border-primary/40"
@@ -353,56 +165,32 @@ export function ComprehensiveServicesSection() {
                 </ul>
 
                 {/* CTA Button */}
-                <div className="mt-5 pt-4 border-t border-border/50">
-                  {(() => {
-                    const btnContent = (
-                      <button className="group/btn w-full relative overflow-hidden rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-md">
-                        <span className="relative z-10 flex items-center justify-center gap-2">
-                          {service.buttonText}
-                          <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                        </span>
-                        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-[800ms] ease-out group-hover/btn:translate-x-full" />
-                      </button>
-                    );
+                <div className="mt-5 pt-4 border-t border-border/50 space-y-3">
+                  <ServiceBookingModal
+                    modalTitle={`Book ${service.title}`}
+                    modalDescription="Share a few details and our care coordinator will call you back shortly."
+                    serviceOptions={service.formOptions || service.features}
+                    selectPlaceholder={service.selectLabel}
+                    source="home-services"
+                  >
+                    <button className="group/btn w-full relative overflow-hidden rounded-full bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        {service.buttonText}
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                      </span>
+                      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-[800ms] ease-out group-hover/btn:translate-x-full" />
+                    </button>
+                  </ServiceBookingModal>
 
-                    if (service.buttonLink && (service.id === "infection" || service.buttonText === "Learn More")) {
-                      return (
-                        <Link to={service.buttonLink as any} className="block">
-                          {btnContent}
-                        </Link>
-                      );
-                    }
-                    if (service.id === "mother-baby") {
-                      return <MotherBabyBookingModal>{btnContent}</MotherBabyBookingModal>;
-                    }
-                    if (service.id === "elderly") {
-                      return <ElderCareBookingModal>{btnContent}</ElderCareBookingModal>;
-                    }
-                    if (service.id === "physio") {
-                      return <PhysioBookingModal>{btnContent}</PhysioBookingModal>;
-                    }
-                    if (service.id === "equipment") {
-                      return <EquipmentBookingModal>{btnContent}</EquipmentBookingModal>;
-                    }
-                    if (service.id === "icu") {
-                      return <IcuBookingModal>{btnContent}</IcuBookingModal>;
-                    }
-                    if (service.id === "sample") {
-                      return <LabBookingModal>{btnContent}</LabBookingModal>;
-                    }
-                    return (
-                      <NursingBookingModal 
-                        defaultService=""
-                        modalTitle={`Book ${service.title}`}
-                        modalDescription="Fill out the details and our team will reach out within minutes."
-                        serviceOptions={service.formOptions || service.features}
-                        selectPlaceholder={service.selectLabel}
-                        source="Comprehensive"
-                      >
-                        {btnContent}
-                      </NursingBookingModal>
-                    );
-                  })()}
+                  {service.buttonLink && (
+                    <Link
+                      to={service.buttonLink as any}
+                      className="flex items-center justify-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary transition-colors hover:text-accent"
+                    >
+                      Learn more
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  )}
                 </div>
               </div>
             </motion.article>

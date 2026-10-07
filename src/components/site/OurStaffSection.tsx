@@ -225,7 +225,7 @@ export function OurStaffSection() {
               onClick={() => setActiveCategory(cat)}
               className={`whitespace-nowrap px-4 py-3 text-[15px] font-medium transition-colors relative ${
                 activeCategory === cat
-                  ? "text-[#F97316]"
+                  ? "text-primary"
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
@@ -233,7 +233,7 @@ export function OurStaffSection() {
               {activeCategory === cat && (
                 <motion.div
                   layoutId="staff-tab"
-                  className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-[#F97316]"
+                  className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-primary"
                   transition={{ type: "spring", stiffness: 350, damping: 30 }}
                 />
               )}

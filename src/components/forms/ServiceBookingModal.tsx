@@ -2,93 +2,92 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import {
-  Loader2,
-  CheckCircle2,
-} from "lucide-react";
+import { Loader2, CheckCircle2, ChevronDown } from "lucide-react";
 import { api } from "@/lib/api/client";
-import { settingsQ } from "@/lib/api/queries";
 import { triggerBookingSuccess } from "@/components/site/GlobalBookingSuccess";
 import { CITIES } from "@/components/forms/BookingForm";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
 
-const physioFormSchema = z.object({
+const bookingSchema = z.object({
   patient_name: z.string().min(2, "Enter full name"),
   contact_phone: z.string().min(7, "Enter a valid phone number"),
   city: z.string().min(1, "Select a city"),
+  duty_hours: z.string().min(1, "Select duty hours"),
   service_name: z.string().min(1, "Select a service"),
   patient_condition: z.string().optional(),
 });
 
-type PhysioFormValues = z.infer<typeof physioFormSchema>;
+type BookingValues = z.infer<typeof bookingSchema>;
 
-export const PHYSIO_SERVICES = [
-  "Physiotherapy at Home",
-  "Post-Hospitalization Physiotherapy",
-  "Post-Surgery Rehabilitation",
-  "Stroke Rehabilitation",
-  "Orthopedic Physiotherapy",
-  "Bedridden Patient Physiotherapy",
-  "Geriatric Physiotherapy",
-  "Mobility & Balance Training",
-  "Pain Management & Exercise Therapy",
-  "Others",
+const DEFAULT_SERVICES = [
+  "Home Nursing / Trained Nurse",
+  "Patient Attendant (Male / Female)",
+  "Elder Care at Home",
+  "Hospital Escort & Assistance",
+  "Baby / Newborn Care",
+  "Aya Service (Home or Hospital)",
+  "House Maid / Domestic Help",
+  "Housekeeping Service",
+  "Other Requirement",
 ];
 
-const fieldAnim = {
-  hidden: { opacity: 0, y: 16, filter: "blur(4px)" },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.5, delay: 0.1 + i * 0.08, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
-
-export function PhysioBookingModal({
+export function ServiceBookingModal({
   children,
   defaultService = "",
+  modalTitle,
+  modalDescription,
+  serviceOptions,
+  selectPlaceholder,
+  source,
   onOpenChange,
 }: {
   children: React.ReactNode;
   defaultService?: string;
+  modalTitle?: string;
+  modalDescription?: string;
+  serviceOptions?: string[];
+  selectPlaceholder?: string;
+  source?: string;
   onOpenChange?: (open: boolean) => void;
 }) {
+  const resolvedTitle = modalTitle || "Book a Service";
+  const resolvedDescription =
+    modalDescription ||
+    "Tell us about your requirements and our care team will contact you shortly.";
+  const resolvedServices = serviceOptions || DEFAULT_SERVICES;
+  const resolvedPlaceholder = selectPlaceholder || "Select a service";
   const [open, setOpen] = useState(false);
   const [done, setDone] = useState(false);
+  const [refCode, setRefCode] = useState("");
 
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen);
     onOpenChange?.(newOpen);
   };
-  const [refCode, setRefCode] = useState("");
 
-  const { data: settings } = useQuery(settingsQ());
-  const phone = (settings?.phone || "+919813095627").replace(/[^\\d+]/g, "");
-
-  const form = useForm<PhysioFormValues>({
-    resolver: zodResolver(physioFormSchema),
+  const form = useForm<BookingValues>({
+    resolver: zodResolver(bookingSchema),
     defaultValues: {
       patient_name: "",
       contact_phone: "",
       city: "",
+      duty_hours: "",
       service_name: defaultService,
       patient_condition: "",
     },
   });
 
   const mut = useMutation({
-    mutationFn: (data: PhysioFormValues) =>
+    mutationFn: (data: BookingValues) =>
       api.post<{ reference?: string }>("/bookings", {
         ...data,
+        patient_condition: data.duty_hours
+          ? `Duty Hours: ${data.duty_hours}${data.patient_condition ? ` | Condition: ${data.patient_condition}` : ""}`
+          : data.patient_condition,
+        source: source,
         preferred_date: new Date().toISOString().split("T")[0],
         address: "Pending (Provided via Quick Form)",
       }),
@@ -117,7 +116,7 @@ export function PhysioBookingModal({
     >
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="max-w-[480px] w-[95vw] overflow-hidden rounded-[1.75rem] border border-border bg-white p-6 md:p-8 shadow-2xl sm:h-auto h-auto max-h-[90dvh] overflow-y-auto">
-        <DialogTitle className="sr-only">Book a Physiotherapist</DialogTitle>
+        <DialogTitle className="sr-only">{resolvedTitle}</DialogTitle>
 
         <div className="relative pt-2 pb-2">
           <AnimatePresence mode="wait">
@@ -131,14 +130,15 @@ export function PhysioBookingModal({
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="text-center py-8"
               >
+                {/* Animated checkmark ring */}
                 <motion.div
                   initial={{ scale: 0, rotate: -90 }}
                   animate={{ scale: 1, rotate: 0 }}
                   transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                   className="mx-auto mb-6 relative"
                 >
-                  <div className="h-20 w-20 mx-auto rounded-full bg-green-100 grid place-items-center">
-                    <CheckCircle2 className="h-10 w-10 text-green-600" strokeWidth={2} />
+                  <div className="h-20 w-20 mx-auto rounded-full bg-primary-soft grid place-items-center">
+                    <CheckCircle2 className="h-10 w-10 text-primary" strokeWidth={2} />
                   </div>
                 </motion.div>
 
@@ -170,8 +170,8 @@ export function PhysioBookingModal({
                   transition={{ delay: 0.45, duration: 0.5 }}
                   className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto mb-8"
                 >
-                  Our physiotherapy team will contact you shortly to confirm the details and
-                  arrange a session for your patient.
+                  Our care coordinator will call you shortly to confirm the details and arrange the
+                  right staff for you.
                 </motion.p>
 
                 <motion.button
@@ -196,11 +196,9 @@ export function PhysioBookingModal({
                 {/* Header */}
                 <div className="mb-6">
                   <h3 className="font-display text-2xl md:text-3xl tracking-tight text-foreground mb-2">
-                    Book a Physiotherapist
+                    {resolvedTitle}
                   </h3>
-                  <p className="text-muted-foreground text-sm">
-                    Fill out the details and our team will reach out within minutes.
-                  </p>
+                  <p className="text-muted-foreground text-sm">{resolvedDescription}</p>
                 </div>
 
                 <form onSubmit={form.handleSubmit((v) => mut.mutate(v))} className="space-y-4">
@@ -247,24 +245,34 @@ export function PhysioBookingModal({
                           </option>
                         ))}
                       </select>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none"
-                      >
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
+                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
                     </div>
                     {form.formState.errors.city && (
                       <p className="text-xs text-destructive mt-1.5 pl-1">
                         {form.formState.errors.city.message}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Duty Hours */}
+                  <div>
+                    <div className="relative">
+                      <select
+                        {...form.register("duty_hours")}
+                        className="w-full rounded-full border border-border bg-transparent px-5 py-3.5 pr-10 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15 text-foreground appearance-none cursor-pointer"
+                      >
+                        <option value="">Select duty hours</option>
+                        {["8 hours", "12 hours", "24 hours"].map((h) => (
+                          <option key={h} value={h}>
+                            {h}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                    </div>
+                    {form.formState.errors.duty_hours && (
+                      <p className="text-xs text-destructive mt-1.5 pl-1">
+                        {form.formState.errors.duty_hours.message}
                       </p>
                     )}
                   </div>
@@ -276,27 +284,14 @@ export function PhysioBookingModal({
                         {...form.register("service_name")}
                         className="w-full rounded-full border border-border bg-black/5 px-5 py-3.5 pr-10 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15 text-foreground appearance-none cursor-pointer"
                       >
-                        <option value="">Select physiotherapy service</option>
-                        {PHYSIO_SERVICES.map((s) => (
+                        <option value="">{resolvedPlaceholder}</option>
+                        {resolvedServices.map((s) => (
                           <option key={s} value={s}>
                             {s}
                           </option>
                         ))}
                       </select>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none"
-                      >
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
+                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
                     </div>
                     {form.formState.errors.service_name && (
                       <p className="text-xs text-destructive mt-1.5 pl-1">
@@ -320,7 +315,7 @@ export function PhysioBookingModal({
                     <button
                       type="submit"
                       disabled={mut.isPending}
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#0A252E] px-4 py-3.5 text-sm font-semibold text-white hover:bg-[#0A252E]/90 transition-colors disabled:opacity-60"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-4 py-3.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
                     >
                       {mut.isPending && <Loader2 className="h-4.5 w-4.5 animate-spin" />}
                       {mut.isPending ? "Submitting..." : "Submit Request"}

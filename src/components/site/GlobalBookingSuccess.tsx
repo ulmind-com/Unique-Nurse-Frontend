@@ -64,7 +64,7 @@ export function GlobalBookingSuccess() {
             </h2>
 
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Thank you for choosing Nupun Home Health Care. Our team will contact you shortly.
+              Thank you for choosing Unique Nurse and Aya Services. Our team will contact you shortly.
             </p>
           </motion.div>
         </div>

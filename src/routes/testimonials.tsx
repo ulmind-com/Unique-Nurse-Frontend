@@ -10,9 +10,9 @@ import { motion } from "framer-motion";
 export const Route = createFileRoute("/testimonials")({
   head: () => ({
     meta: [
-      { title: "Testimonials — Nupun Home Health Care" },
+      { title: "Testimonials — Unique Nurse and Aya Services" },
       { name: "description", content: "Real stories from the families we've cared for." },
-      { property: "og:title", content: "Testimonials — Nupun Home Health Care" },
+      { property: "og:title", content: "Testimonials — Unique Nurse and Aya Services" },
       { property: "og:description", content: "Real stories from families." },
       { property: "og:url", content: "/testimonials" },
     ],
@@ -25,44 +25,44 @@ const DUMMY_TESTIMONIALS: any[] = [
   {
     id: "d1",
     name: "Rajeshwar Roy",
-    role: "Son of Patient",
+    role: "Son of Patient, Garia",
     rating: 5,
-    content: "Nupun Health arranged an ICU-trained nurse within two hours after my father was discharged. The clinical discipline and empathy shown by the staff were exceptional.",
+    content: "They sent a trained nurse the same evening my father was discharged. She handled his dressing and medicines properly, and the coordinator checked in every day that first week.",
   },
   {
     id: "d2",
     name: "Anjali Mukherjee",
-    role: "Post-Surgery Patient",
+    role: "New Mother, Jadavpur",
     rating: 5,
-    content: "The physiotherapist assigned to me for knee replacement recovery was thorough and patient. I walked without assistance much faster than my doctor anticipated! Their home sessions saved us the hassle of traveling.",
+    content: "We took night baby care for the first two months. The didi was experienced with newborns and very clean in her habits — I finally got some sleep after the delivery.",
   },
   {
     id: "d3",
     name: "Saurabh Banerjee",
     role: "Elder Care Client",
     rating: 5,
-    content: "Having a dedicated 24/7 care attendant for my elderly mother brought our family peace of mind. Truly hospital-grade standards at home.",
+    content: "A 24-hour attendant for my elderly mother changed everything for us. She is patient with my mother, which matters more than anything else.",
   },
   {
     id: "d4",
-    name: "Dr. Meenakshi Iyer",
-    role: "Referring Physician",
+    name: "Sandhya Dutta",
+    role: "Nursing Home Administrator",
     rating: 5,
-    content: "I regularly refer my post-op patients to Nupun for home care. Their strict adherence to clinical protocols and timely vitals reporting makes them a reliable extension of our hospital care.",
+    content: "We use their housekeeping staff for our nursing home. Uniformed, supervised, and they understand waste segregation — which is not something every agency gets right.",
   },
   {
     id: "d5",
-    name: "Vikram Chauhan",
-    role: "Husband of Patient",
+    name: "Vikram Saha",
+    role: "Husband of Patient, Behala",
     rating: 4,
-    content: "Excellent service. The medical equipment (BiPAP machine and oxygen concentrator) was delivered and installed on the same day. The technician explained everything clearly.",
+    content: "Booked a hospital Aya for my wife's five-day admission. He was punctual every shift and we did not have to keep a relative in the ward overnight.",
   },
   {
     id: "d6",
     name: "Sneha Kapoor",
     role: "Daughter, NRI",
     rating: 5,
-    content: "Living abroad, I was constantly worried about my parents' health. Nupun's elder care plan with daily WhatsApp updates and weekly doctor visits has been a blessing. I feel connected to their care journey.",
+    content: "I live abroad and my parents are alone in Kolkata. Their caregiver visits daily, takes them to the doctor and sends me updates on WhatsApp. That peace of mind is worth everything.",
   }
 ];
 
@@ -108,7 +108,7 @@ function TestimonialsPage() {
           </div>
           <Link
             to="/booking"
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-6 py-3.5 text-sm font-medium text-primary-foreground"
           >
             Book care <ArrowRight className="h-4 w-4" />
           </Link>

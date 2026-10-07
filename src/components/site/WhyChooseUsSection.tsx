@@ -3,56 +3,64 @@ import { ShieldCheck, Stethoscope, Clock, HeartHandshake, Activity, Sparkles } f
 import { Section, SectionHeader } from "@/components/site/Section";
 import { cn } from "@/lib/utils";
 
+/**
+ * All six cards sit in the brand's red family on purpose — differentiation
+ * comes from the icon, not from six unrelated hues.
+ */
 const REASONS = [
   {
     id: 1,
-    title: "Hospital-Grade Expertise",
+    title: "Qualified Nursing Staff",
     description:
-      "Our staff is trained in top-tier hospitals, ensuring clinical excellence at home.",
+      "GNM and ANM qualified nurses for clinical care, and trained attendants for everything else.",
     icon: Stethoscope,
-    gradient: "from-blue-500/20 to-cyan-500/20",
-    iconColor: "text-blue-500",
+    gradient: "from-primary/18 to-accent/10",
+    iconColor: "text-primary",
   },
   {
     id: 2,
-    title: "Verified & Trusted",
-    description: "Every professional undergoes rigorous 5-step background and clinical checks.",
+    title: "Verified Before Placement",
+    description:
+      "Aadhaar, local address and reference checks on file for every nurse, Aya and maid we send.",
     icon: ShieldCheck,
-    gradient: "from-emerald-500/20 to-teal-500/20",
-    iconColor: "text-emerald-500",
+    gradient: "from-accent/18 to-primary/10",
+    iconColor: "text-accent",
   },
   {
     id: 3,
-    title: "24/7 Dedicated Support",
-    description: "Round-the-clock helpline and care coordinators for complete peace of mind.",
+    title: "Day, Night or 24-Hour",
+    description:
+      "8, 12 and 24-hour shifts, live-in placements and cover for the staff's weekly off.",
     icon: Clock,
-    gradient: "from-orange-500/20 to-amber-500/20",
-    iconColor: "text-orange-500",
+    gradient: "from-primary/14 to-accent/14",
+    iconColor: "text-primary",
   },
   {
     id: 4,
-    title: "Compassionate Care",
-    description: "We treat your loved ones like family, prioritizing empathy and respect.",
+    title: "Replacement, Not Excuses",
+    description:
+      "If your staff falls ill or leaves, we send a substitute — you never restart the search.",
     icon: HeartHandshake,
-    gradient: "from-rose-500/20 to-pink-500/20",
-    iconColor: "text-rose-500",
+    gradient: "from-accent/14 to-primary/18",
+    iconColor: "text-accent",
   },
   {
     id: 5,
-    title: "Advanced Equipment",
-    description: "Premium ICU setup and specialized medical devices delivered to your door.",
+    title: "Local to Kolkata",
+    description:
+      "Based in Garia and placing staff across Kolkata ourselves — not a call centre in another city.",
     icon: Activity,
-    gradient: "from-violet-500/20 to-purple-500/20",
-    iconColor: "text-violet-500",
+    gradient: "from-primary/20 to-accent/8",
+    iconColor: "text-primary",
   },
   {
     id: 6,
-    title: "Transparent Process",
+    title: "Honest Recommendations",
     description:
-      "Clear pricing, zero hidden fees, and straightforward care plans tailored for you.",
+      "Describe the patient and we will tell you the cheapest option that actually works.",
     icon: Sparkles,
-    gradient: "from-amber-500/20 to-yellow-500/20",
-    iconColor: "text-amber-500",
+    gradient: "from-accent/20 to-primary/8",
+    iconColor: "text-accent",
   },
 ];
 
@@ -68,10 +76,10 @@ export function WhyChooseUsSection() {
       <div className="relative z-10 flex flex-col items-center">
         <SectionHeader
           align="center"
-          eyebrow="The Nupun Advantage"
+          eyebrow="The Unique Nurse & Aya Advantage"
           title={
             <>
-              Why Choose <span className="text-primary">Nupun Home Cares</span>
+              Why Choose <span className="text-primary">Unique Nurse and Aya Services</span>
             </>
           }
           description="Experience the perfect blend of clinical excellence, compassion, and reliability right in the comfort of your home."

@@ -44,12 +44,12 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Clash Display", "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --shadow-elegant: 0 30px 80px -30px color-mix(in oklab, var(--accent) 25%, transparent);
-  --shadow-soft: 0 10px 40px -12px color-mix(in oklab, var(--accent) 18%, transparent);
+  --shadow-elegant: 0 30px 80px -30px color-mix(in oklab, var(--accent) 28%, transparent);
+  --shadow-soft: 0 10px 40px -12px color-mix(in oklab, var(--accent) 20%, transparent);
   --shadow-glow: 0 0 80px color-mix(in oklab, var(--primary) 45%, transparent);
   --shadow-float:
-    0 40px 100px -40px rgba(15, 60, 60, 0.35), 0 12px 30px -12px rgba(15, 60, 60, 0.18);
-  --shadow-pill: 0 20px 60px -25px rgba(15, 80, 80, 0.4);
+    0 40px 100px -40px rgba(124, 15, 28, 0.32), 0 12px 30px -12px rgba(124, 15, 28, 0.16);
+  --shadow-pill: 0 20px 60px -25px rgba(124, 15, 28, 0.38);
 }
 
 :root {
@@ -57,64 +57,65 @@
 
   --background: #ffffff;
   --surface: #ffffff;
-  --foreground: #0f2427;
-  --dark: #071719;
+  --foreground: #1f1013;
+  --dark: #1b070b;
 
   --card: #ffffff;
   --card-foreground: var(--foreground);
   --popover: oklch(1 0 0);
   --popover-foreground: var(--foreground);
 
-  /* Deep Teal matching client image */
-  --primary: #07646d;
+  /* Deep crimson — the brand anchor */
+  --primary: #b3122b;
   --primary-foreground: #ffffff;
-  --primary-soft: #e0f2f4;
+  --primary-soft: #fdeaec;
 
-  /* Light Blue / Soft Teal */
-  --secondary: #eaf6f8;
-  --secondary-foreground: #044349;
+  /* Blush tint used for soft surfaces and pills */
+  --secondary: #fdf2f3;
+  --secondary-foreground: #7d0c1d;
 
-  /* Accent matching the teal family */
-  --accent: #0c8c99;
+  /* Warmer red used for gradients and highlights */
+  --accent: #e03a4a;
   --accent-foreground: #ffffff;
 
-  --muted: #f4f9f9;
-  --muted-foreground: #6b8487;
+  --muted: #fbf7f7;
+  --muted-foreground: #7c6a6d;
 
-  --destructive: #ef4444;
+  --destructive: #a5111f;
   --destructive-foreground: #ffffff;
 
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #07646d;
+  --border: #f0e3e5;
+  --input: #f0e3e5;
+  --ring: #b3122b;
 
-  --chart-1: oklch(0.72 0.11 190);
-  --chart-2: oklch(0.65 0.12 215);
-  --chart-3: oklch(0.85 0.08 240);
-  --chart-4: oklch(0.7 0.15 250);
-  --chart-5: oklch(0.65 0.18 300);
+  --chart-1: oklch(0.55 0.21 20);
+  --chart-2: oklch(0.65 0.19 28);
+  --chart-3: oklch(0.74 0.15 35);
+  --chart-4: oklch(0.82 0.1 40);
+  --chart-5: oklch(0.45 0.17 12);
 }
 
 .dark {
-  --background: oklch(0.15 0.03 235);
-  --surface: oklch(0.18 0.035 235);
-  --foreground: oklch(0.98 0.01 230);
-  --card: oklch(0.18 0.035 235);
+  --background: oklch(0.16 0.025 15);
+  --surface: oklch(0.2 0.03 15);
+  --foreground: oklch(0.97 0.008 20);
+  --card: oklch(0.2 0.03 15);
   --card-foreground: var(--foreground);
-  --popover: oklch(0.18 0.035 235);
+  --popover: oklch(0.2 0.03 15);
   --popover-foreground: var(--foreground);
-  --primary: oklch(0.75 0.12 190);
-  --primary-foreground: oklch(0.15 0.03 235);
-  --primary-soft: oklch(0.25 0.05 195);
-  --secondary: oklch(0.25 0.05 240);
+  --dark: oklch(0.12 0.02 15);
+  --primary: oklch(0.68 0.19 22);
+  --primary-foreground: oklch(0.16 0.025 15);
+  --primary-soft: oklch(0.28 0.08 20);
+  --secondary: oklch(0.26 0.06 18);
   --secondary-foreground: var(--foreground);
-  --accent: oklch(0.7 0.13 215);
-  --accent-foreground: oklch(0.98 0.01 230);
-  --muted: oklch(0.22 0.03 240);
-  --muted-foreground: oklch(0.7 0.03 240);
+  --accent: oklch(0.72 0.17 28);
+  --accent-foreground: oklch(0.16 0.025 15);
+  --muted: oklch(0.24 0.03 18);
+  --muted-foreground: oklch(0.72 0.02 20);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.75 0.12 190);
+  --ring: oklch(0.68 0.19 22);
 }
 
 @layer base {
@@ -177,6 +178,37 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+@utility text-gradient-brand {
+  background: linear-gradient(
+    100deg,
+    color-mix(in oklab, var(--accent) 85%, white 15%),
+    color-mix(in oklab, var(--primary) 55%, white 45%)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility card-lift {
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elegant);
+    border-color: color-mix(in oklab, var(--primary) 30%, transparent);
+  }
+}
+
+@utility brand-gradient {
+  background: linear-gradient(
+    130deg,
+    var(--primary) 0%,
+    color-mix(in oklab, var(--accent) 88%, black 6%) 100%
+  );
 }
 
 @utility text-gradient-dark {

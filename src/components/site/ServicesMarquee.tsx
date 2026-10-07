@@ -7,7 +7,7 @@ import type { Service } from "@/lib/api/types";
 const FALLBACK_IMAGES = [
   "/assets/services/nurse-elder.jpg",
   "/assets/services/nurse-companion.jpg",
-  "/assets/services/physio.jpg",
+  "/assets/services/bedridden_care.png",
   "/assets/services/mobility.jpg",
 ];
 
@@ -23,13 +23,13 @@ export function ServicesMarquee() {
           ...items,
           ...(Array.from({ length: 4 - items.length }).map((_, i) => ({
             id: `placeholder-${i}`,
-            title: ["Home Nursing", "Elder Care", "Physiotherapy", "Mobility Support"][i],
+            title: ["Home Nursing", "Elder Care", "Aya Services", "Patient Attendant"][i],
             slug: "",
             short_description: [
               "24/7 qualified nurses at your home.",
               "Compassionate daily companionship.",
-              "In-home rehab by expert therapists.",
-              "Assisted mobility & recovery.",
+              "Male & female Aya for home or hospital.",
+              "Bedside support for bedridden patients.",
             ][i],
             featured_image: FALLBACK_IMAGES[i],
           })) as unknown as Service[]),
@@ -213,7 +213,7 @@ function ServiceMarqueeCard({
         <Link
           to="/booking"
           search={hasSlug ? ({ service: service.slug } as never) : undefined}
-          className="group/btn mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-all hover:bg-primary hover:text-primary-foreground"
+          className="group/btn mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
         >
           Book Now
           <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />

@@ -20,12 +20,12 @@ export const Route = createFileRoute("/booking")({
   validateSearch: (s) => searchSchema.parse(s),
   head: () => ({
     meta: [
-      { title: "Book care — Nupun Home Health Care" },
+      { title: "Book care — Unique Nurse and Aya Services" },
       {
         name: "description",
-        content: "Book a nurse, physio or attendant at home. Confirmation within 2 hours.",
+        content: "Book a nurse, Aya, attendant, baby caregiver, maid or housekeeping staff in Kolkata. We confirm availability the same day.",
       },
-      { property: "og:title", content: "Book care — Nupun" },
+      { property: "og:title", content: "Book care — Unique Nurse and Aya Services" },
       { property: "og:description", content: "Book care at home in minutes." },
       { property: "og:url", content: "/booking" },
     ],
@@ -61,13 +61,13 @@ const TRUST = [
 function BookingPage() {
   const { service } = Route.useSearch();
   const { data: settings } = useQuery(settingsQ());
-  const phone = (settings?.phone || "+919813095627").replace(/[^\d+]/g, "");
-  const whatsapp = (settings?.whatsapp ?? settings?.phone ?? "+919813095627").replace(/\D/g, "");
+  const phone = (settings?.phone || "+919432941098").replace(/[^\d+]/g, "");
+  const whatsapp = (settings?.whatsapp ?? settings?.phone ?? "+919432941098").replace(/\D/g, "");
 
   return (
-    <main className="min-h-screen bg-[#F8F9FA] relative flex flex-col">
+    <main className="min-h-screen bg-muted relative flex flex-col">
       {/* ── Custom Split Hero (Reversed) ──────────────── */}
-      <div className="relative isolate overflow-hidden bg-[#fafafa]">
+      <div className="relative isolate overflow-hidden bg-muted">
         {/* Subtle background blob */}
         <div className="absolute top-0 left-0 -z-10 w-full h-full opacity-30 bg-gradient-to-r from-primary/10 to-transparent pointer-events-none" />
 
@@ -142,7 +142,7 @@ function BookingPage() {
       </div>
 
       <Section className="py-16 lg:py-20 relative flex-1">
-        <div className="absolute inset-0 bg-[#F8F9FA] z-0 pointer-events-none" />
+        <div className="absolute inset-0 bg-muted z-0 pointer-events-none" />
         <div className="grid gap-10 lg:grid-cols-12 relative z-10">
           {/* Form */}
           <div className="lg:col-span-7">

@@ -104,7 +104,7 @@ export function ApplicationForm({ jobId, jobTitle }: { jobId?: string; jobTitle:
       <button
         type="submit"
         disabled={mut.isPending}
-        className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background hover-glow disabled:opacity-60"
+        className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-6 py-3.5 text-sm font-medium text-primary-foreground hover-glow disabled:opacity-60"
       >
         {mut.isPending && <Loader2 className="h-4 w-4 animate-spin" />}
         Submit application

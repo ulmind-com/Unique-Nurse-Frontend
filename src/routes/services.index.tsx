@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE } from "@/config/site";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
@@ -24,16 +25,15 @@ import { usePremiumCategories } from "@/components/site/CategoryShowcasePremium"
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
-      { title: "Services — Nupun Home Health Care" },
+      { title: `Our Services — ${SITE.name}` },
       {
         name: "description",
-        content:
-          "Nurses, physios, elder care, post-op recovery and more — medically supervised care delivered at home.",
+        content: SITE.description,
       },
-      { property: "og:title", content: "Services — Nupun Home Health Care" },
+      { property: "og:title", content: `Our Services — ${SITE.name}` },
       {
         property: "og:description",
-        content: "Medically supervised home care — nurses, physios, elder care and more.",
+        content: SITE.description,
       },
       { property: "og:url", content: "/services" },
       { property: "og:type", content: "website" },
@@ -70,14 +70,14 @@ const WHY = [
 const CONDITIONS = [
   "Post-Surgery Recovery",
   "Stroke & Paralysis",
-  "Cardiac Care",
-  "Cancer & Palliative",
-  "Orthopedic Rehab",
+  "Bedridden Patients",
   "Dementia & Alzheimer's",
-  "Diabetes Management",
-  "Parkinson's Care",
-  "Bed-ridden Patients",
-  "ICU-at-Home",
+  "Cancer & Palliative Care",
+  "Elderly Living Alone",
+  "Newborn & Postnatal",
+  "Hospital Admissions",
+  "Diabetic Wound Care",
+  "Household Staffing",
 ];
 
 function CategoryCardGridItem({ cat, index }: { cat: any; index: number }) {
@@ -134,7 +134,7 @@ function CategoryCardGridItem({ cat, index }: { cat: any; index: number }) {
           <Link
             to="/booking"
             search={{ service: cat.slug }}
-            className="group/btn relative overflow-hidden rounded-xl bg-foreground px-5 py-2.5 text-sm font-semibold text-background shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:shadow-[0_10px_20px_var(--color-primary),0.3)]"
+            className="group/btn relative overflow-hidden rounded-xl bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
           >
             <span className="relative z-10">
               {cat.title.length <= 18 ? `Book ${cat.title}` : "Book Now"}
@@ -163,8 +163,8 @@ function ServicesIndex() {
 
   const [active, setActive] = useState<string>("all");
 
-  const phone = (settings?.phone || "+919813095627").replace(/[^\d+]/g, "");
-  const whatsapp = (settings?.whatsapp ?? settings?.phone ?? "+919813095627").replace(/[^\d]/g, "");
+  const phone = (settings?.phone || "+919432941098").replace(/[^\d+]/g, "");
+  const whatsapp = (settings?.whatsapp ?? settings?.phone ?? "+919432941098").replace(/[^\d]/g, "");
 
   const heroSlides = settings?.services_hero?.slides;
 
@@ -217,8 +217,8 @@ function ServicesIndex() {
         <SectionHeader
           align="center"
           eyebrow="What we do"
-          title="Our Healthcare Services"
-          description="Comprehensive home healthcare and patient-care services for elderly care, recovery support, ICU transition and rehabilitation."
+          title="Our Services"
+          description="Eight verticals, one verified team — nursing, patient attendants, elder care, hospital escorts, newborn care, Aya, maids and housekeeping."
         />
 
         {isLoading ? (
@@ -297,7 +297,7 @@ function ServicesIndex() {
         </div>
       </Section>
 
-      {/* ── Why Choose Nupun ─────────────────────────────────── */}
+      {/* ── Why Choose Unique Nurse and Aya Services ─────────────────────────────────── */}
       <section className="relative overflow-hidden bg-background">
         <div className="container-x pb-20 lg:pb-28 pt-0">
           <div className="text-center max-w-2xl mx-auto mb-14">
@@ -305,7 +305,7 @@ function ServicesIndex() {
               <HeartHandshake className="h-3.5 w-3.5 text-primary" /> Why families choose us
             </div>
             <h2 className="font-display text-4xl md:text-5xl tracking-tight text-foreground">
-              Why Choose Nupun?
+              Why Choose Unique Nurse and Aya Services?
             </h2>
           </div>
 
@@ -409,7 +409,7 @@ function ServicesIndex() {
         <section className="border-t border-border/60 bg-surface/60 overflow-hidden">
           <div className="container-x pt-20 pb-6">
             <div className="text-[10px] uppercase tracking-[0.24em] text-accent mb-3">
-              What they say about Nupun
+              What they say about Unique Nurse and Aya Services
             </div>
             <h2 className="font-display text-3xl md:text-4xl tracking-tight max-w-2xl">
               Families across India, in their own words.
@@ -458,7 +458,7 @@ function ServicesIndex() {
 
       {/* ── FAQ (Home Page Style) ─────────────────────────────── */}
       {faqs.length > 0 && (
-        <Section className="bg-[#F8F9FA]">
+        <Section className="bg-muted">
           <div className="grid gap-12 lg:grid-cols-2 items-start">
             {/* Left Side: Illustration */}
             <div className="flex items-center justify-center lg:justify-end pr-0 lg:pr-8">

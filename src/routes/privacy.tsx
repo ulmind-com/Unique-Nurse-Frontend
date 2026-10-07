@@ -8,8 +8,8 @@ import { LegalPage } from "@/components/site/LegalPage";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Nupun Home Health Care" },
-      { name: "description", content: "How Nupun collects, uses and protects your information." },
+      { title: "Privacy Policy — Unique Nurse and Aya Services" },
+      { name: "description", content: "How Unique Nurse and Aya Services collects, uses and protects your information." },
       { property: "og:url", content: "/privacy" },
     ],
     links: [{ rel: "canonical", href: "/privacy" }],
@@ -23,7 +23,7 @@ function Page() {
   const defaultSections = [
     {
       title: "What we collect",
-      body: "We collect the details you provide when booking care, requesting equipment, contacting us, or applying to jobs — names, contact info, addresses, and any information you volunteer about care needs. We may also collect basic device information (browser, IP) for security and analytics.",
+      body: "We collect the details you provide when booking a service, contacting us, or applying for work — names, contact numbers, addresses, and anything you tell us about the patient or household requirement. We may also collect basic device information (browser, IP) for security and analytics.",
     },
     {
       title: "How we use it",
@@ -51,7 +51,7 @@ function Page() {
       <PageHero
         eyebrow="Legal"
         title="Privacy policy"
-        description="How Nupun collects, uses and protects your information."
+        description="How Unique Nurse and Aya Services collects, uses and protects your information."
         crumbs={[{ label: "Home", to: "/" }, { label: "Privacy" }]}
       />
       <Section className="pt-4">

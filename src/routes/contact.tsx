@@ -3,11 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { settingsQ } from "@/lib/api/queries";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { MapPin, Mail, Phone } from "lucide-react";
+import { SITE, mapEmbedUrl } from "@/config/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Nupun Home Health Care" },
+      { title: "Contact — Unique Nurse and Aya Services" },
       { name: "description", content: "Talk to a care advisor. We respond within 2 hours." },
     ],
   }),
@@ -16,11 +17,11 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const { data: settings } = useQuery(settingsQ());
-  const phone = (settings?.phone || "+919813095627").replace(/[^\d+]/g, "");
-  const whatsapp = (settings?.whatsapp ?? settings?.phone ?? "+919813095627").replace(/\D/g, "");
+  const phone = (settings?.phone || "+919432941098").replace(/[^\d+]/g, "");
+  const whatsapp = (settings?.whatsapp ?? settings?.phone ?? "+919432941098").replace(/\D/g, "");
 
   return (
-    <main className="min-h-screen bg-[#F8F9FA] relative flex flex-col">
+    <main className="min-h-screen bg-muted relative flex flex-col">
       {/* ── Hero Background ────────────────────────────────────────── */}
       <div id="hero-section" className="absolute top-0 left-0 right-0 h-[60vh] min-h-[500px] z-0">
         <div className="absolute inset-0 bg-dark" /> {/* Dark Theme Base */}
@@ -29,7 +30,7 @@ function ContactPage() {
           alt="Contact Hero"
           className="w-full h-full object-cover mix-blend-overlay opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-transparent to-[#F8F9FA]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-transparent to-muted" />
       </div>
 
       <div className="relative z-10 flex flex-col items-center pt-24 md:pt-32 pb-16 md:pb-24 px-4 w-full flex-1">
@@ -62,11 +63,11 @@ function ContactPage() {
               <div className="space-y-8">
                 <InfoRow
                   icon={MapPin}
-                  title="Head Office"
-                  desc={settings?.address || "Delhi NCR, India"}
+                  title="Our Office"
+                  desc={settings?.address || SITE.address.full}
                 />
-                <InfoRow icon={Mail} title="Email Us" desc={settings?.email || "info@nupun.com"} />
-                <InfoRow icon={Phone} title="Call Us" desc={settings?.phone || "+91 98130 95627"} />
+                <InfoRow icon={Mail} title="Email Us" desc={settings?.email || SITE.email} />
+                <InfoRow icon={Phone} title="Call Us" desc={settings?.phone || SITE.phoneDisplay} />
               </div>
             </div>
           </div>
@@ -90,7 +91,7 @@ function ContactPage() {
           />
         ) : (
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15655383.18970965!2d70.47219958042456!3d22.684179361664426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            src={mapEmbedUrl}
             className="w-full h-full border-none"
             allowFullScreen
             loading="lazy"

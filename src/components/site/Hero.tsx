@@ -84,14 +84,14 @@ export function Hero() {
   const { data: settings } = useQuery(settingsQ());
   const isMobile = useIsMobile();
 
-  const rawNumber = settings?.whatsapp || settings?.phone || "+919813095627";
+  const rawNumber = settings?.whatsapp || settings?.phone || "+919432941098";
   const whatsapp = rawNumber.replace(/\D/g, "");
 
-  const heroHeadline = settings?.hero_headline || "Trusted Home Health Care at Your Doorstep";
-  const heroSubtitle = settings?.hero_subtitle || "Har Pal Aapke Apno Ke Sath";
+  const heroHeadline = settings?.hero_headline || "Trusted Nursing & Aya Care at Your Doorstep";
+  const heroSubtitle = settings?.hero_subtitle || "Aapnar Apon Jon-er Pashe, Pratiti Muhurte";
   const heroDescription =
     settings?.hero_description ||
-    "Trusted Home Nursing, Patient Attendant, Elderly Care, ICU Care, Physiotherapy, Medical Equipment Rental, Services at Home across Faridabad, Gurugram, Noida & Delhi.";
+    "Trained nurses, Aya, patient attendants, elder and newborn care, maids and housekeeping staff — placed at your home or hospital anywhere in Kolkata.";
 
   const ctaPrimaryText = settings?.hero_cta_primary_text || "Book Trusted Care";
   const ctaSecondaryText = settings?.hero_cta_secondary_text || "WhatsApp Us";
@@ -108,10 +108,10 @@ export function Hero() {
   const sliderImages = (isMobile && mobileImages) ? mobileImages : desktopImages;
 
   const defaultStats = [
-    { value: 1500, suffix: "+", label: "Family Served" },
-    { value: 250, suffix: "+", label: "Caregivers" },
-    { value: 40, suffix: "+", label: "Nurses" },
-    { value: 35, suffix: "+", label: "Physiotherapists" },
+    { value: 1500, suffix: "+", label: "Families Served" },
+    { value: 250, suffix: "+", label: "Verified Staff" },
+    { value: 40, suffix: "+", label: "Qualified Nurses" },
+    { value: 24, suffix: "/7", label: "Support Line" },
   ];
 
   const stats = homeHero?.stats?.length ? homeHero.stats : defaultStats;

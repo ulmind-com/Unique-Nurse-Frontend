@@ -1,3 +1,4 @@
+import { SITE } from "@/config/site";
 import { motion } from "framer-motion";
 import { BadgeCheck, Shield, Clock, Users, HeartPulse, MessageCircle, Award } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
@@ -60,7 +61,7 @@ export function CommitmentSection() {
 
   // Section header — dynamic with fallback
   const eyebrow = settings?.why_choose_eyebrow || "Our Promise";
-  const sectionTitle = settings?.why_choose_title || "Why Choose Nupun Home Care?";
+  const sectionTitle = settings?.why_choose_title || "Why Choose Unique Nurse and Aya Services?";
   const sectionDescription =
     settings?.why_choose_description ||
     "We go beyond standard care to ensure your peace of mind and your loved one\u2019s well-being \u2014 every visit, every time.";
@@ -80,10 +81,10 @@ export function CommitmentSection() {
   const teamImage = imgUrl(rawImg) || "/assets/commitment-team.png";
 
   // Parse title to highlight the brand name
-  const titleParts = sectionTitle.split(/(Nupun)/i);
+  const titleParts = sectionTitle.split(new RegExp(`(${SITE.name})`, "i"));
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#f7fafa] via-white to-[#f0f7f6] py-16 md:py-24 lg:py-28">
+    <section className="relative w-full overflow-hidden bg-gradient-to-br from-secondary via-white to-muted py-16 md:py-24 lg:py-28">
       {/* Decorative elements */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
         <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-primary/[0.04] blur-[100px]" />
@@ -113,7 +114,7 @@ export function CommitmentSection() {
           </div>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-medium tracking-tight text-foreground leading-[1.15]">
             {titleParts.map((part, i) =>
-              part.toLowerCase() === "nupun" ? (
+              part.toLowerCase() === SITE.name.toLowerCase() ? (
                 <span key={i} className="relative inline-block">
                   <span className="relative z-10 text-primary">{part}</span>
                   <svg
@@ -199,7 +200,7 @@ export function CommitmentSection() {
             <div className="overflow-hidden rounded-[1.5rem] border-2 border-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)]">
               <img
                 src={teamImage}
-                alt="Nupun Home Health Care Team"
+                alt="Unique Nurse and Aya Services Team"
                 loading="lazy"
                 decoding="async"
                 className="w-full h-auto object-cover aspect-[4/3]"

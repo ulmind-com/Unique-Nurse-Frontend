@@ -17,7 +17,7 @@ export const Route = createFileRoute("/careers/$slug")({
   },
   head: ({ loaderData, params }) => ({
     meta: [
-      { title: `${loaderData?.title ?? "Career"} — Nupun` },
+      { title: `${loaderData?.title ?? "Career"} — Unique Nurse and Aya Services` },
       { name: "description", content: loaderData?.description ?? "Join our care team." },
       { property: "og:title", content: loaderData?.title ?? "Career" },
       { property: "og:description", content: loaderData?.description ?? "" },
