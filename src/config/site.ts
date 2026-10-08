@@ -25,7 +25,7 @@ export const SITE = {
   phoneDisplay: "+91 94329 41098",
   /** wa.me target (digits only, with country code). */
   whatsapp: "919432941098",
-  email: "uniquenurseandaya@gmail.com",
+  email: "unique.point2010@gmail.com",
 
   address: {
     line1: "3, Anukul Chandra Road, Tetulberia",
