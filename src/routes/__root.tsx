@@ -97,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Unique Nurse and Aya Services" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#b3122b" },
+      { name: "theme-color", content: "#195a5f" },
       {
         property: "og:title",
         content: `${SITE.name} — Nursing, Aya & Patient Care in Kolkata`,
