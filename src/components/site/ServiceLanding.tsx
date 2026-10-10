@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
-  ArrowUpRight,
   BadgeCheck,
   Check,
   ChevronDown,
@@ -39,6 +38,7 @@ export function ServiceLanding({ content }: { content: ServiceLandingContent }) 
   return (
     <div className="bg-background">
       <Hero content={content} phone={phone} whatsapp={whatsapp} />
+      <StatBand content={content} />
       <WhatWeProvide content={content} />
       <WhyUs content={content} />
       <ShiftsAndFit content={content} />
@@ -72,7 +72,7 @@ function Hero({
   // Build image array: prefer API hero_images, fallback to single heroImage
   const heroImages = useMemo(() => {
     const apiImages = category?.hero_images
-      ?.map((img: any) => img.url)
+      ?.map((img) => img.url)
       .filter(Boolean) as string[] | undefined;
     if (apiImages && apiImages.length > 0) return apiImages;
     return [content.heroImage];
@@ -91,90 +91,77 @@ function Hero({
   }, [hasSlider, heroImages.length]);
 
   return (
-    <section className="relative min-h-[100svh] lg:min-h-svh flex items-center overflow-hidden">
-      {/* Hero background image slider */}
-      <div className="absolute inset-0 -z-20 w-full h-full bg-[#0a0a0a]">
-        <AnimatePresence>
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0, scale: 1 }}
-            animate={{ opacity: 1, scale: 1.15 }}
-            exit={{ opacity: 0 }}
-            transition={{ 
-              opacity: { duration: 1.8, ease: "easeInOut" },
-              scale: { duration: 8, ease: "easeOut" }
-            }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <picture>
-              <img 
-                src={heroImages[currentSlide]} 
-                alt="" 
-                className="w-full h-full object-cover object-[center_30%]"
-              />
-            </picture>
-          </motion.div>
-        </AnimatePresence>
-      </div>
+    <section
+      id="hero-section"
+      className="relative isolate flex min-h-[560px] items-end overflow-hidden pb-12 pt-28 sm:min-h-[640px] sm:pt-32 lg:min-h-[760px] lg:pb-20 lg:pt-40"
+    >
+      {/* Background images — slide or single */}
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={currentSlide}
+          src={heroImages[currentSlide]}
+          alt=""
+          aria-hidden
+          initial={hasSlider ? { opacity: 0, scale: 1.08 } : false}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={hasSlider ? { opacity: 0 } : undefined}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+        />
+      </AnimatePresence>
 
-      {/* Cinematic dark overlay similar to home page hero */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/90 via-black/60 to-black/30" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-
-      {/* Dot grid */}
+      {/* Three scrims. A flat base guarantees legibility at every viewport
+          width, the directional wash adds depth on the copy side, and the
+          bottom fade hands off to the page background. */}
+      <div className="absolute inset-0 -z-10 bg-[rgba(10,33,35,0.66)]" />
       <div
-        className="absolute inset-0 -z-10 opacity-[0.08]"
+        className="pointer-events-none absolute inset-0 -z-10"
         style={{
-          backgroundImage: "radial-gradient(white 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
+          background:
+            "linear-gradient(100deg, rgba(10, 33, 35, 0.72) 0%, rgba(10, 33, 35, 0.5) 38%, rgba(25, 90, 95, 0.22) 72%, transparent 100%)",
         }}
-        aria-hidden
       />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-background to-transparent" />
 
-      {/* Cross/plus pattern */}
-      <div className="absolute inset-0 -z-10 opacity-5 pointer-events-none" aria-hidden>
-        {Array.from({ length: 6 }).map((_: any, i: number) => (
-          <div
-            key={i}
-            className="absolute text-white font-bold text-4xl"
-            style={{
-              top: `${15 + i * 15}%`,
-              left: `${60 + (i % 3) * 12}%`,
-              transform: `rotate(${i * 12}deg)`,
-            }}
-          >
-            +
-          </div>
-        ))}
-      </div>
+      <div className="container-x relative">
+        <div className="max-w-3xl">
+          <Reveal>
+            <nav className="mb-6 flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/55">
+              <Link to="/" className="transition-colors hover:text-white">
+                Home
+              </Link>
+              <span>/</span>
+              <Link to="/services" className="transition-colors hover:text-white">
+                Services
+              </Link>
+              <span>/</span>
+              <span className="text-white/85">{content.navLabel}</span>
+            </nav>
+          </Reveal>
 
-      <div className="container-x relative z-10 pt-24 pb-12 lg:pt-28 lg:pb-14">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
-          {/* Left content */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90 mb-5">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              {content.navLabel}
-            </div>
+          <Reveal delay={0.05}>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-white backdrop-blur-md">
+              <Sparkles className="h-3.5 w-3.5" />
+              {content.eyebrow}
+            </span>
+          </Reveal>
 
-            <h1 
-              className="font-display font-medium text-white tracking-tight leading-[1.1] text-[40px] sm:text-[48px] md:text-[56px] lg:text-[64px] mb-4 whitespace-pre-line"
-              style={{ textShadow: "0 4px 40px rgba(0,0,0,0.5)" }}
-            >
+          <Reveal delay={0.12}>
+            <h1 className="mt-6 font-display text-[2.6rem] leading-[1.02] text-white sm:text-6xl lg:text-7xl">
               {content.heroTitle}
               <br />
               <span className="text-gradient-brand">{content.heroHighlight}</span>
             </h1>
+          </Reveal>
 
-            <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl mb-6">
+          <Reveal delay={0.2}>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
               {content.heroDescription}
             </p>
+          </Reveal>
 
-            <div className="mt-6 md:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <Reveal delay={0.28}>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <ServiceBookingModal
                 modalTitle={`Book ${content.name}`}
                 modalDescription="Share a few details and our care coordinator will call you back shortly."
@@ -182,34 +169,47 @@ function Hero({
                 selectPlaceholder="Select what you need"
                 source={content.slug}
               >
-                <button
-                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 text-[15px] font-semibold text-primary-foreground shadow-sm transition-all duration-300 hover:brightness-110 hover:-translate-y-0.5"
-                >
+                <button className="group inline-flex h-12 items-center gap-2 rounded-full bg-white px-7 text-sm font-semibold text-primary shadow-pill transition-transform hover:scale-[1.03]">
                   Book This Service
-                  <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
               </ServiceBookingModal>
 
               <a
                 href={telHref.replace(SITE.phone, phone)}
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-md px-8 py-3.5 text-[15px] font-medium text-white shadow-sm hover:bg-white/20 hover:border-white/50 transition-all duration-300 hover:-translate-y-0.5"
+                className="inline-flex h-12 items-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/20"
               >
-                <Phone className="h-5 w-5 text-[#25D366]" />
+                <Phone className="h-4 w-4" />
                 Call Now
               </a>
+
+              <a
+                href={waHref(`Hi, I need ${content.name}.`).replace(SITE.whatsapp, whatsapp)}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-12 items-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/20"
+              >
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.36}>
+            <div className="mt-8 flex items-center gap-6">
+              <ul className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                {content.badges.map((badge) => (
+                  <li key={badge} className="flex items-center gap-2 text-sm text-white/75">
+                    <BadgeCheck className="h-4 w-4 text-white" />
+                    {badge}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-6">
-              {content.stats.map((s: any) => (
-                <div key={s.label}>
-                  <div className="text-xl font-display font-bold text-white">{s.value}</div>
-                  <div className="text-xs text-white/55 mt-0.5">{s.label}</div>
-                </div>
-              ))}
-            </div>
-
+            {/* Slide indicators */}
             {hasSlider && (
-              <div className="mt-8 flex items-center gap-2">
+              <div className="mt-6 flex items-center gap-2">
                 {heroImages.map((_, i) => (
                   <button
                     key={i}
@@ -225,8 +225,32 @@ function Hero({
                 ))}
               </div>
             )}
-          </motion.div>
+          </Reveal>
         </div>
+      </div>
+    </section>
+  );
+}
+
+
+/* ───────────────────────────── Stat band ──────────────────────────── */
+
+function StatBand({ content }: { content: ServiceLandingContent }) {
+  return (
+    <section className="relative z-10 -mt-10 lg:-mt-14">
+      <div className="container-x">
+        <Reveal>
+          <div className="grid grid-cols-1 divide-y divide-border rounded-[28px] border border-border bg-surface p-2 shadow-float sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            {content.stats.map((stat) => (
+              <div key={stat.label} className="px-6 py-7 text-center">
+                <div className="font-display text-3xl text-primary lg:text-4xl">{stat.value}</div>
+                <div className="mt-1.5 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
