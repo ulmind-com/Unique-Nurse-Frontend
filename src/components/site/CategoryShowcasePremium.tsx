@@ -7,7 +7,6 @@ import AutoScroll from "embla-carousel-auto-scroll";
 import { useCallback, useEffect } from "react";
 import type { Category } from "@/lib/api/types";
 import { categoriesQ } from "@/lib/api/queries";
-import { CategoryCardShape } from "./CategoryCardShape";
 import { SERVICE_LANDINGS } from "@/content/services";
 
 type Variant = "a" | "b" | "c" | "d";
@@ -240,13 +239,8 @@ export function CategoryShowcasePremium() {
                     />
                   </div>
 
-                  {/* Base darkening for legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-
-                  {/* Unique SVG shape overlay (themed mint) */}
-                  <div className="absolute inset-0 text-primary opacity-90 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-95">
-                    <CategoryCardShape variant={item.variant} className="h-full w-full" />
-                  </div>
+                  {/* Base darkening for legibility (no color tint) */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/10" />
 
                   {/* Index */}
                   <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-white backdrop-blur-md ring-1 ring-white/20">
@@ -256,10 +250,10 @@ export function CategoryShowcasePremium() {
 
                   {/* Text */}
                   <div className="absolute inset-x-0 bottom-0 p-7 md:p-9">
-                    <h4 className="font-display text-2xl leading-tight text-white drop-shadow-sm md:text-3xl lg:text-[2rem]">
+                    <h4 className="font-display text-2xl leading-tight text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.65)] md:text-3xl lg:text-[2rem]">
                       {item.title}
                     </h4>
-                    <p className="mt-2 max-w-md text-sm leading-relaxed text-white/85 opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 md:text-[15px]">
+                    <p className="mt-2 max-w-md text-sm leading-relaxed text-white/90 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)] opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 md:text-[15px]">
                       {item.description}
                     </p>
                   </div>
