@@ -27,7 +27,7 @@ const fallbacks: Array<{
 }> = SERVICE_LANDINGS.map((entry, i) => ({
   title: entry.name,
   description: entry.heroDescription,
-  image: entry.heroImage,
+  image: entry.cardImage || entry.heroImage,
   variant: VARIANTS[i % VARIANTS.length],
   dedicatedLink: `/${entry.slug}`,
 }));
@@ -86,11 +86,18 @@ export function usePremiumCategories() {
       const fb = fallbacks.find(
         (f) => f.title.trim().toLowerCase() === cat.name?.trim().toLowerCase(),
       );
+      
+      // Look up the canonical service entry to check for cardImage if API doesn't provide image
+      const matchedEntry = SERVICE_LANDINGS.find(
+        (entry) => entry.name.trim().toLowerCase() === cat.name?.trim().toLowerCase()
+      );
+      const fallbackImage = matchedEntry?.cardImage || fb?.image;
+
       const rawImage = typeof cat.image === "string" ? cat.image : cat.image?.url;
       return {
         title: cat.name || fb?.title || "",
         description: cat.description || fb?.description || "",
-        image: normImage(rawImage) || normImage(fb?.image) || fb?.image || "",
+        image: normImage(rawImage) || normImage(fallbackImage) || fallbackImage || "",
         slug: cat.slug || "",
         variant: fb?.variant ?? variants[i % variants.length],
         dedicatedLink: resolveDedicatedLink(cat.name, cat.slug, fb),

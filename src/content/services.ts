@@ -37,6 +37,8 @@ export type ServiceLandingContent = {
   heroHighlight: string;
   heroDescription: string;
   heroImage: string;
+  /** Image to use specifically for category cards (optional fallback to heroImage) */
+  cardImage?: string;
   /** Trust chips under the hero copy. */
   badges: string[];
   /** Headline stats shown in the band under the hero. */
@@ -270,6 +272,7 @@ export const SERVICE_LANDINGS: ServiceLandingContent[] = [
     heroDescription:
       "Patient caregivers who help with medicines, meals, walks, doctor visits and company — so your parents keep their independence and their own home.",
     heroImage: IMG.elder,
+    cardImage: "/assets/categories/elder_care_card.jpg",
     badges: ["Daily Check-ins", "Doctor Visit Support", "Live-In Available"],
     stats: [
       { value: "7 days", label: "A Week Cover" },
