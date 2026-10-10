@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,7 +18,7 @@ import {
 import { SITE, telHref, waHref } from "@/config/site";
 import type { ServiceLandingContent } from "@/content/services";
 import { SERVICE_LANDINGS } from "@/content/services";
-import { settingsQ } from "@/lib/api/queries";
+import { settingsQ, categoriesQ } from "@/lib/api/queries";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
 import { ServiceBookingModal } from "@/components/forms/ServiceBookingModal";
 import { cn } from "@/lib/utils";
@@ -60,17 +60,56 @@ function Hero({
   phone: string;
   whatsapp: string;
 }) {
+  const { data: categoriesData } = useQuery(categoriesQ({ limit: 20 }));
+
+  // Try to find the matching category from the API for hero images
+  const category = categoriesData?.items?.find(
+    (c) =>
+      c.slug === content.categorySlug ||
+      c.name?.toLowerCase() === content.name.toLowerCase(),
+  );
+
+  // Build image array: prefer API hero_images, fallback to single heroImage
+  const heroImages = useMemo(() => {
+    const apiImages = category?.hero_images
+      ?.map((img) => img.url)
+      .filter(Boolean) as string[] | undefined;
+    if (apiImages && apiImages.length > 0) return apiImages;
+    return [content.heroImage];
+  }, [category?.hero_images, content.heroImage]);
+
+  const hasSlider = heroImages.length > 1;
+  const SLIDE_DURATION = 6000;
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    if (!hasSlider) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, SLIDE_DURATION);
+    return () => clearInterval(timer);
+  }, [hasSlider, heroImages.length]);
+
   return (
     <section
       id="hero-section"
       className="relative isolate flex min-h-[560px] items-end overflow-hidden pb-12 pt-28 sm:min-h-[640px] sm:pt-32 lg:min-h-[760px] lg:pb-20 lg:pt-40"
     >
-      <img
-        src={content.heroImage}
-        alt=""
-        aria-hidden
-        className="absolute inset-0 -z-20 h-full w-full object-cover"
-      />
+      {/* Background images — slide or single */}
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={currentSlide}
+          src={heroImages[currentSlide]}
+          alt=""
+          aria-hidden
+          initial={hasSlider ? { opacity: 0, scale: 1.08 } : false}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={hasSlider ? { opacity: 0 } : undefined}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+        />
+      </AnimatePresence>
+
       {/* Three scrims. A flat base guarantees legibility at every viewport
           width, the directional wash adds depth on the copy side, and the
           bottom fade hands off to the page background. */}
@@ -157,20 +196,42 @@ function Hero({
           </Reveal>
 
           <Reveal delay={0.36}>
-            <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              {content.badges.map((badge) => (
-                <li key={badge} className="flex items-center gap-2 text-sm text-white/75">
-                  <BadgeCheck className="h-4 w-4 text-white" />
-                  {badge}
-                </li>
-              ))}
-            </ul>
+            <div className="mt-8 flex items-center gap-6">
+              <ul className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                {content.badges.map((badge) => (
+                  <li key={badge} className="flex items-center gap-2 text-sm text-white/75">
+                    <BadgeCheck className="h-4 w-4 text-white" />
+                    {badge}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Slide indicators */}
+            {hasSlider && (
+              <div className="mt-6 flex items-center gap-2">
+                {heroImages.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentSlide(i)}
+                    className={cn(
+                      "h-1.5 rounded-full transition-all duration-500",
+                      i === currentSlide
+                        ? "w-8 bg-white"
+                        : "w-1.5 bg-white/40 hover:bg-white/60",
+                    )}
+                    aria-label={`Slide ${i + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </Reveal>
         </div>
       </div>
     </section>
   );
 }
+
 
 /* ───────────────────────────── Stat band ──────────────────────────── */
 
