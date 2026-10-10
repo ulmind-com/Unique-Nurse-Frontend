@@ -228,22 +228,12 @@ export function CategoryShowcasePremium() {
             {items.map((item, i) => {
               const CardInner = (
                 <>
-                  {/* Image */}
-                  <div className="absolute inset-0 bg-neutral-900">
-                    {/* Blurred zoomed copy fills the card so there are no empty bars */}
-                    <img
-                      src={item.image}
-                      alt=""
-                      aria-hidden="true"
-                      className="absolute inset-0 h-full w-full scale-110 object-cover opacity-55 blur-2xl"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    {/* Full original image — shown complete, never cropped */}
+                  {/* Image — fills the whole card edge to edge */}
+                  <div className="absolute inset-0">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="relative h-full w-full object-contain transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+                      className="h-full w-full object-cover object-center transition-transform duration-[1200ms] ease-out group-hover:scale-[1.08]"
                       loading="lazy"
                       decoding="async"
                     />
