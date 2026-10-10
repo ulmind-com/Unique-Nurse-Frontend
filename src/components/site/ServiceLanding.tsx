@@ -74,12 +74,12 @@ function Hero({
       {/* Three scrims. A flat base guarantees legibility at every viewport
           width, the directional wash adds depth on the copy side, and the
           bottom fade hands off to the page background. */}
-      <div className="absolute inset-0 -z-10 bg-[rgba(20,6,9,0.66)]" />
+      <div className="absolute inset-0 -z-10 bg-[rgba(10,33,35,0.66)]" />
       <div
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(100deg, rgba(20, 6, 9, 0.72) 0%, rgba(20, 6, 9, 0.5) 38%, rgba(123, 14, 30, 0.22) 72%, transparent 100%)",
+            "linear-gradient(100deg, rgba(10, 33, 35, 0.72) 0%, rgba(10, 33, 35, 0.5) 38%, rgba(25, 90, 95, 0.22) 72%, transparent 100%)",
         }}
       />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-background to-transparent" />
