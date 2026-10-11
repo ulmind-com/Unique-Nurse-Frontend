@@ -89,7 +89,12 @@ export function usePremiumCategories() {
       
       // Look up the canonical service entry to check for cardImage if API doesn't provide image
       const matchedEntry = SERVICE_LANDINGS.find(
-        (entry) => entry.name.trim().toLowerCase() === cat.name?.trim().toLowerCase()
+        (entry) =>
+          entry.name.trim().toLowerCase() === cat.name?.trim().toLowerCase() ||
+          entry.categorySlug === cat.slug ||
+          entry.slug === cat.slug ||
+          (cat.name && entry.name.toLowerCase().includes(cat.name.trim().toLowerCase())) ||
+          (cat.name && cat.name.toLowerCase().includes(entry.name.trim().toLowerCase())),
       );
       const fallbackImage = matchedEntry?.cardImage || fb?.image;
 
@@ -97,7 +102,7 @@ export function usePremiumCategories() {
       return {
         title: cat.name || fb?.title || "",
         description: cat.description || fb?.description || "",
-        image: normImage(rawImage) || normImage(fallbackImage) || fallbackImage || "",
+        image: normImage(matchedEntry?.cardImage) || normImage(rawImage) || normImage(fallbackImage) || fallbackImage || "",
         slug: cat.slug || "",
         variant: fb?.variant ?? variants[i % variants.length],
         dedicatedLink: resolveDedicatedLink(cat.name, cat.slug, fb),

@@ -178,6 +178,7 @@ export const SERVICE_LANDINGS: ServiceLandingContent[] = [
     heroDescription:
       "Verified male and female attendants for bedridden, recovering and long-term patients — feeding, hygiene, mobility and company, at home or in hospital.",
     heroImage: IMG.attendant,
+    cardImage: "/assets/categories/patient_care_card.jpg",
     badges: ["Male & Female Staff", "Day / Night Shifts", "Hospital or Home"],
     stats: [
       { value: "8 / 12 / 24", label: "Hour Shifts" },
@@ -479,6 +480,7 @@ export const SERVICE_LANDINGS: ServiceLandingContent[] = [
     heroDescription:
       "Trained newborn caregivers and Japa support so new mothers can rest, recover and settle into a routine with confidence.",
     heroImage: IMG.baby,
+    cardImage: "/assets/categories/baby_care_card.jpg",
     badges: ["Newborn Trained", "Japa / Mother Care", "Night Support"],
     stats: [
       { value: "Newborn", label: "Specialist Staff" },
@@ -671,6 +673,7 @@ export const SERVICE_LANDINGS: ServiceLandingContent[] = [
     heroDescription:
       "Full-time and part-time maids for cooking, cleaning and everyday household work — identity verified and placed quickly.",
     heroImage: IMG.maid,
+    cardImage: "/assets/categories/house_maid_card.jpg",
     badges: ["Full & Part Time", "Identity Verified", "Cooking Available"],
     stats: [
       { value: "Part / Full", label: "Time Options" },
@@ -775,6 +778,7 @@ export const SERVICE_LANDINGS: ServiceLandingContent[] = [
     heroDescription:
       "Trained housekeeping staff for homes, hospitals and nursing homes — uniformed, supervised and working to a hygiene-first routine.",
     heroImage: IMG.housekeeping,
+    cardImage: "/assets/categories/housekeeping_card.jpg",
     badges: ["Trained Staff", "Hospital Grade", "Supervised Daily"],
     stats: [
       { value: "Home +", label: "Hospital Trained" },
