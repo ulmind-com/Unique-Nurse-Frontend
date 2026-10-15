@@ -83,7 +83,27 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
+const SETTINGS_SSR_TIMEOUT = 4000;
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  // Fetch the website settings (logo, theme, fonts, hero slides, headlines) on
+  // the server so the very first paint is already the real site. Without this
+  // the page rendered the hardcoded fallbacks first and only swapped to the
+  // live content once the client-side query resolved, which looked like a
+  // different, older website flashing up for a few seconds.
+  loader: async ({ context }) => {
+    try {
+      const settings = await Promise.race([
+        context.queryClient.ensureQueryData(settingsQ()),
+        new Promise<null>((resolve) => setTimeout(() => resolve(null), SETTINGS_SSR_TIMEOUT)),
+      ]);
+      return { settings: settings ?? null };
+    } catch {
+      // A slow or sleeping backend must never block the page.
+      return { settings: null };
+    }
+  },
+  staleTime: 5 * 60 * 1000,
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -239,6 +259,13 @@ function ThemeInjector() {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const { settings } = Route.useLoaderData();
+
+  // Seed the cache with the server-fetched settings before any child renders,
+  // so hydration starts from the live content instead of the fallbacks.
+  if (settings && queryClient.getQueryData(settingsQ().queryKey) === undefined) {
+    queryClient.setQueryData(settingsQ().queryKey, settings);
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

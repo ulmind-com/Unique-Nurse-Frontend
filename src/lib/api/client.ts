@@ -38,9 +38,21 @@ type FetchOpts = {
   query?: Record<string, string | number | boolean | undefined | null>;
 };
 
+/**
+ * During SSR there is no origin to hang the relative `/api/public/proxy` path
+ * off, so hit the upstream API directly instead of looping back through our own
+ * server. In the browser we keep going through the proxy (same-origin, no CORS).
+ */
+const SSR_UPSTREAM =
+  import.meta.env.VITE_API_UPSTREAM ?? "https://unique-nurse-aya-api.onrender.com/api/v1";
+
+function buildUrl(path: string) {
+  if (typeof window === "undefined") return new URL(`${SSR_UPSTREAM}${path}`);
+  return new URL(`${API_BASE}${path}`, window.location.origin);
+}
+
 export async function apiFetch<T>(path: string, opts: FetchOpts = {}): Promise<T> {
-  const base = typeof window !== "undefined" ? window.location.origin : "http://localhost";
-  const url = new URL(`${API_BASE}${path}`, base);
+  const url = buildUrl(path);
   if (opts.query) {
     for (const [k, v] of Object.entries(opts.query)) {
       if (v !== undefined && v !== null && v !== "") url.searchParams.set(k, String(v));
