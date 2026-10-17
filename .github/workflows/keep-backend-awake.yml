@@ -1,0 +1,27 @@
+# Pings the Render backend every ~10 minutes so it never falls asleep.
+#
+# Render's free tier sleeps a web service after ~15 min of no traffic. When a
+# visitor then lands on the site, the server-side settings fetch times out and
+# the page paints the hardcoded fallback first, swapping to the live content
+# only once Render wakes (~30s). That swap is the "old site flashes, then the
+# real one loads" bug. Keeping the service warm means the live content is
+# always ready on the very first paint, so there is no flash.
+#
+# /health also pings MongoDB, so the database connection stays warm too.
+name: Keep backend awake
+
+on:
+  schedule:
+    - cron: "*/10 * * * *" # every 10 minutes
+  workflow_dispatch: {} # allow manual runs from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping /health
+        run: |
+          curl -fsS --max-time 60 --retry 3 --retry-delay 20 \
+            https://unique-nurse-aya-api.onrender.com/health \
+            && echo "Backend is awake" \
+            || echo "Ping failed (backend may be waking up)"

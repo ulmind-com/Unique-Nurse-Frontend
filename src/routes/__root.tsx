@@ -83,7 +83,10 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
-const SETTINGS_SSR_TIMEOUT = 4000;
+// Safety net for a backend that is awake but slow to answer (e.g. the first
+// request after a deploy). The keep-alive workflow normally keeps it warm, so
+// in practice settings resolve in well under a second.
+const SETTINGS_SSR_TIMEOUT = 8000;
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   // Fetch the website settings (logo, theme, fonts, hero slides, headlines) on
