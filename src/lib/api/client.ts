@@ -44,7 +44,7 @@ type FetchOpts = {
  * server. In the browser we keep going through the proxy (same-origin, no CORS).
  */
 const SSR_UPSTREAM =
-  import.meta.env.VITE_API_UPSTREAM ?? "https://unique-nurse-aya-api.onrender.com/api/v1";
+  import.meta.env.VITE_API_UPSTREAM ?? "https://unique-nurse-backend.onrender.com/api/v1";
 
 function buildUrl(path: string) {
   if (typeof window === "undefined") return new URL(`${SSR_UPSTREAM}${path}`);
