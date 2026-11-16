@@ -22,6 +22,6 @@ jobs:
       - name: Ping /health
         run: |
           curl -fsS --max-time 60 --retry 3 --retry-delay 20 \
-            https://unique-nurse-aya-api.onrender.com/health \
+            https://unique-nurse-backend.onrender.com/health \
             && echo "Backend is awake" \
             || echo "Ping failed (backend may be waking up)"

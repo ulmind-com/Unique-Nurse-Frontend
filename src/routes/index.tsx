@@ -23,8 +23,13 @@ import { PremiumScrollReveal } from "@/components/site/PremiumScrollReveal";
 
 import { CommitmentSection } from "@/components/site/CommitmentSection";
 import { OurStaffSection } from "@/components/site/OurStaffSection";
+import { staffQ } from "@/lib/api/queries";
 
 export const Route = createFileRoute("/")({
+  loader: async ({ context }) => {
+    // Prefetch staff on server so Our Staff section displays immediately with zero delay
+    await context.queryClient.ensureQueryData(staffQ({ limit: 50 })).catch(() => null);
+  },
   head: () => ({
     meta: [
       { title: `${SITE.name} — Nursing, Aya & Patient Care in Kolkata` },

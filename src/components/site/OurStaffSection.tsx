@@ -13,7 +13,7 @@ type Duration = "7" | "15" | "30";
 
 function StaffCard({ staff }: { staff: StaffMember }) {
   const [duration, setDuration] = useState<Duration>("7");
-  const photo = imgUrl(staff.photo);
+  const photo = imgUrl(staff.photo, "c_fill,w_400,h_500,q_auto,f_auto");
 
   const price =
     duration === "7"
