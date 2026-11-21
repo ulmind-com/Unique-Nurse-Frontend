@@ -5,6 +5,7 @@ import { testimonialsQ, reviewSummaryQ } from "@/lib/api/queries";
 import { PageHero } from "@/components/site/PageHero";
 import { TestimonialCard } from "@/components/site/cards/TestimonialCard";
 import { Section } from "@/components/site/Section";
+import { GoogleReviews } from "@/components/site/GoogleReviews";
 import { motion } from "framer-motion";
 
 export const Route = createFileRoute("/testimonials")({
@@ -113,6 +114,11 @@ function TestimonialsPage() {
             Book care <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
+      </div>
+
+      {/* Live Google Reviews Widget */}
+      <div className="container-x pt-12 pb-6">
+        <GoogleReviews />
       </div>
 
       <Section className="pt-12 pb-24 relative overflow-hidden">

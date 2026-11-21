@@ -7,11 +7,10 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
-import { blogsQ, faqsQ, reviewSummaryQ, settingsQ, testimonialsQ } from "@/lib/api/queries";
+import { blogsQ, faqsQ, settingsQ } from "@/lib/api/queries";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { BlogCard } from "@/components/site/cards/BlogCard";
 import { VideoTestimonialsSection } from "@/components/site/VideoTestimonialsSection";
-import { TestimonialCard } from "@/components/site/cards/TestimonialCard";
 import { FaqAccordion } from "@/components/site/FaqAccordion";
 import { GoogleReviews } from "@/components/site/GoogleReviews";
 import { Hero } from "@/components/site/Hero";
@@ -84,9 +83,9 @@ function Home() {
         <BlogVideosSection />
       </PremiumScrollReveal>
 
-      {/* 6. They Say About Unique Nurse and Aya Services (Testimonials) */}
+      {/* Google Reviews Section (Live Elfsight Widget) */}
       <PremiumScrollReveal>
-        <TestimonialsSection />
+        <GoogleReviewsSection />
       </PremiumScrollReveal>
 
       {/* Why Choose Unique Nurse and Aya Services + Commitment to Excellence */}
@@ -96,9 +95,6 @@ function Home() {
 
       <PremiumScrollReveal>
         <VideoTestimonialsSection />
-      </PremiumScrollReveal>
-      <PremiumScrollReveal>
-        <ReviewsSection />
       </PremiumScrollReveal>
 
       {/* 8. FAQ's Section */}
@@ -140,108 +136,13 @@ function TrustBar() {
   );
 }
 
-const DEFAULT_TESTIMONIALS: any /* eslint-disable-line @typescript-eslint/no-explicit-any */[] = [
-  {
-    id: "1",
-    name: "Rajeshwar Roy",
-    role: "Son of Patient, Kolkata",
-    rating: 5,
-    content:
-      "They sent a trained nurse the same evening my father was discharged. She handled his dressing and medicines properly, and the coordinator checked in every day that first week.",
-  },
-  {
-    id: "2",
-    name: "Anjali Mukherjee",
-    role: "New Mother, Garia",
-    rating: 5,
-    content:
-      "We took night baby care for the first two months. The didi was experienced with newborns and very clean in her habits — I finally got some sleep.",
-  },
-  {
-    id: "3",
-    name: "Saurabh Banerjee",
-    role: "Elder Care Client",
-    rating: 5,
-    content:
-      "I live abroad and my mother is alone in Kolkata. Their caregiver visits daily, takes her to the doctor and sends me updates. That peace of mind is worth everything.",
-  },
-];
-
-function TestimonialsSection() {
-  const { data } = useQuery(testimonialsQ({ limit: 8 }));
-  const rawItems = data?.items ?? [];
-  const items = rawItems.length ? rawItems : DEFAULT_TESTIMONIALS;
-
-  const isMobile = useIsMobile();
-  const plugins = !isMobile ? [
-    AutoScroll({
-      playOnInit: true,
-      speed: 1.2,
-      stopOnInteraction: false,
-      stopOnMouseEnter: true,
-      direction: "forward",
-    })
-  ] : [];
-
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true, 
-    dragFree: !isMobile, 
-    align: "start" 
-  }, plugins);
-
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
-
-  const onInit = useCallback((emblaApi: any) => {
-    setScrollSnaps(emblaApi.scrollSnapList());
-  }, []);
-
-  const onSelect = useCallback((emblaApi: any) => {
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, []);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onInit(emblaApi);
-    onSelect(emblaApi);
-    emblaApi.on("reInit", onInit);
-    emblaApi.on("reInit", onSelect);
-    emblaApi.on("select", onSelect);
-  }, [emblaApi, onInit, onSelect]);
-
+function GoogleReviewsSection() {
   return (
-    <Section className="overflow-hidden pb-4 pt-2 lg:pt-4">
-      <SectionHeader eyebrow="Testimonials & Reviews" title="They Say About Unique Nurse and Aya Services" align="center" />
-      <div className="mt-10 -mx-4 md:-mx-8">
-        <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
-          <div className="flex pl-4 md:pl-8">
-            {[...items, ...items, ...items].map((t, i) => (
-              <div
-                key={`${t.id}-${i}`}
-                className="min-w-0 flex-[0_0_85%] sm:flex-[0_0_50%] md:flex-[0_0_35%] lg:flex-[0_0_28%] pr-4 md:pr-6"
-              >
-                <TestimonialCard t={t} />
-              </div>
-            ))}
-          </div>
-        </div>
+    <section className="py-14 lg:py-20 bg-surface/50 border-y border-border/60 overflow-hidden">
+      <div className="container-x">
+        <GoogleReviews />
       </div>
-      
-      {isMobile && (
-        <div className="flex justify-center gap-2 mt-6">
-          {scrollSnaps.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => emblaApi?.scrollTo(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === selectedIndex ? "w-6 bg-primary" : "w-2 bg-primary/20"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
-    </Section>
+    </section>
   );
 }
 
@@ -463,16 +364,6 @@ function FaqSection() {
           </motion.div>
         </motion.div>
       </div>
-    </Section>
-  );
-}
-
-function ReviewsSection() {
-  const { data } = useQuery(reviewSummaryQ());
-  if (!data || data.total_reviews === 0) return null;
-  return (
-    <Section>
-      <GoogleReviews summary={data} />
     </Section>
   );
 }
